@@ -1,14 +1,16 @@
 // import {  } from 'core/actions';
 // import {  } from 'core/models';
 // import { RootState } from 'core/reducers';
-// import { classNames } from 'core/styles';
+import { classNames } from 'core/styles';
 import * as React from 'react';
 // import { connect } from 'react-redux';
 // import { } from 'reactstrap';
+import TaskForm from 'components/taskForm';
+import buildTaskForm from 'components/taskForm/utils/buildTaskFrom';
 
-/* const cn = classNames(require('./index.scss'));
+const cn = classNames(require('./index.scss'));
 
-const mapStateToProps = (state: RootState, props: any): Props => {
+/* const mapStateToProps = (state: RootState, props: any): Props => {
     return {
         ...props,
     };
@@ -33,28 +35,42 @@ const Temp = {
     score: 100,
 };
 
+const temp = {
+    title: 'Exchange money',
+    assigmentRepo: 'htppfsdfsd',
+    status: 'Assigned',
+    score: 0,
+};
+
+const BuildTaskForm = buildTaskForm(TaskForm);
+
 export default class Tasks extends React.Component {
     render() {
         return (
-            <div className="tasks">
+            <div className={cn('tasks')}>
                 <h2>Tasks</h2>
                 {Temp.isLoading ? (
                     <h3>Loading...</h3>
                 ) : (
-                    <div className="row">
-                        <div className="col-6">
-                            <p>
-                                Your github private repository{' '}
-                                <a className="badge badge-dark" href={Temp.github}>
-                                    here
-                                </a>
-                            </p>
+                    <section>
+                        <div className="row">
+                            <div className="col-6">
+                                <p>
+                                    Your github private repository{' '}
+                                    <a className="badge badge-dark" href={Temp.github}>
+                                        here
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 text-right">
+                                <p>You are in the TOP 50 students!</p>
+                                <p>Full Score: {Temp.score}</p>
+                            </div>
                         </div>
-                        <div className="col-6 text-right">
-                            <p>You are in the TOP 50 students!</p>
-                            <p>Full Score: {Temp.score}</p>
+                        <div className="card-deck mb-3">
+                            <BuildTaskForm {...temp} />
                         </div>
-                    </div>
+                    </section>
                 )}
             </div>
         );
