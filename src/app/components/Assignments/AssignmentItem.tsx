@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class SingleTask extends React.PureComponent {
+class AssignmentItem extends React.PureComponent {
     render() {
         return (
             <div className="card bg-secondary mb-3">
@@ -42,4 +42,4 @@ class SingleTask extends React.PureComponent {
     }
 }
 
-export default SingleTask;
+export default AssignmentItem;

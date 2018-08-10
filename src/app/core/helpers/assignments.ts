@@ -1,6 +1,6 @@
 // import { DateTime, Interval } from 'luxon';
 
-import { IAssignmentDocument, AssignmentStatus } from '../models';
+import { IAssignmentDocument } from '../models';
 
 type INormalizeAssignments = {
     isEndAssignment: boolean;
@@ -8,15 +8,18 @@ type INormalizeAssignments = {
 };
 
 export type NormalizeAssignmentsData = {
-    assignment: INormalizeAssignments[];
+    assignments: INormalizeAssignments[];
 };
 
 export const getNormalizeAssignmentsData = (assignments: IAssignmentDocument[]): NormalizeAssignmentsData[] => {
+    const dateNow = Date.now();
     const sortedAssignments = assignments.reduce<INormalizeAssignments[]>((res, assignment) => {
-        if (assignment.status === AssignmentStatus.Assigned && assignment.deadlineDate) {
+        // console.log(assignment.deadlineDate, dateNow);
+        if (assignment.deadlineDate > dateNow) {
+            res.push({ assignment, isEndAssignment: false });
+        } else {
             res.push({ assignment, isEndAssignment: true });
         }
-        res.push({ assignment, isEndAssignment: false });
         return res;
     }, []);
     // console.log(sortedAssignments);
@@ -24,9 +27,27 @@ export const getNormalizeAssignmentsData = (assignments: IAssignmentDocument[]):
         res => {
             return res;
         },
-        [{ assignment: [] }],
+        [{ assignments: [] }],
     );
-    const data = sortedAssignments.reduce<NormalizeAssignmentsData[]>(res => {
+    // console.log(sortedAssignments);
+    const data = sortedAssignments.reduce<NormalizeAssignmentsData[]>((res, normalizeAssignment) => {
+        for (let index = 0; index < res.length; index++) {
+            /* 123
+            123
+            123
+            123
+            123
+            123
+             */
+            if (index) {
+                const item = res[index];
+                item.assignments.push(normalizeAssignment);
+            } else {
+                const item = res[index];
+                item.assignments.push(normalizeAssignment);
+            }
+        }
+        // console.log(res);
         return res;
     }, initialData);
     // data;

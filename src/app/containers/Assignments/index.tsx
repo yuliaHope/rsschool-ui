@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 
 import Assignments from 'components/Assignments';
 import { fetchAssignments, submitSolution } from 'core/actions';
-// import { NormalizeAssignmentsData } from 'core/helpers';
+import { NormalizeAssignmentsData } from 'core/helpers';
 import { IAssignment } from 'core/models';
 import './index.scss';
 
 const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
     return {
         ...props,
-        // isLoading: state.assignments.isLoading,
         courseId: props.match.params.id,
         isAdmin: state.user.isAdmin,
-        // normalizeData: state.assignments.normalizeData,
+        normalizeData: state.assignments.normalizeData,
     };
 };
 
@@ -30,11 +29,11 @@ const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProp
 };
 
 type AssignmentsContainerProps = {
-    // normalizeData: NormalizeAssignmentsData[];
+    normalizeData: NormalizeAssignmentsData[];
     onLoad: (id: string) => void;
     courseId: string;
-    isLoading: boolean;
     isAdmin: boolean;
+    submitSolution: (assignments: IAssignment) => void;
 };
 
 class AssignmentsContainer extends React.Component<AssignmentsContainerProps, any> {
@@ -43,7 +42,7 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
     }
 
     render() {
-        // const { isAdmin, isLoading, courseId } = this.props;
+        const { isAdmin, courseId, normalizeData } = this.props;
         return (
             <div className="schedule">
                 <h2>TASKS</h2>
@@ -63,11 +62,10 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
                 </div>
 
                 <Assignments
-                // userId={userId}
-                // courseId={courseId}
-                // normalizeData={normalizeData}
-                // isAdmin={isAdmin}
-                // sumbitAssignment={this.props.sumbitAssignment}
+                    courseId={courseId}
+                    normalizeData={normalizeData}
+                    isAdmin={isAdmin}
+                    submitSolution={this.props.submitSolution}
                 />
             </div>
         );

@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 
-import { SCHEDULE } from './constants';
-import { IEventDocument, IStageDocument } from './models';
+import { SCHEDULE, ASSIGNMENT } from './constants';
+import { IEventDocument, IStageDocument, IAssignmentDocument } from './models';
 
 interface ILoadingAction {
     type: SCHEDULE.LOADING;
@@ -12,6 +12,13 @@ interface IFetchCourseEventsAndStagesOkAction {
     payload: {
         events: IEventDocument[];
         stages: IStageDocument[];
+    };
+}
+
+interface IFetchAssignmentsOkAction {
+    type: ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK;
+    payload: {
+        assignments: IAssignmentDocument[];
     };
 }
 
@@ -54,6 +61,7 @@ export type IScheduleAction =
     | ILoadingAction
     | IFailAction
     | IFetchCourseEventsAndStagesOkAction
+    | IFetchAssignmentsOkAction
     | IAddCourseStageOkAction
     | IUpdateCourseStageOkAction
     | IDeleteCourseStageOkAction
