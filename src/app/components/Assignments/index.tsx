@@ -2,6 +2,7 @@ import * as React from 'react';
 import AssignmentItem from './AssignmentItem';
 import { NormalizeAssignmentsData } from 'core/helpers';
 import { IAssignment, IAssignmentDocument } from 'core/models';
+import './index.scss';
 
 type AssignmentsProps = {
     courseId: string;
@@ -25,18 +26,30 @@ class Assignments extends React.PureComponent<AssignmentsProps, AssignmentsState
 
     render() {
         const { normalizeData } = this.props;
+        const chunkedAssignments = normalizeData[0]
+            ? normalizeData[0].assignments.reduce<any[][]>((prev, next, index) => {
+                  if (index % 3 === 0) {
+                      prev.push([]);
+                  }
+                  prev[prev.length - 1].push(next);
+                  return prev;
+              }, [])
+            : [];
 
-        return (
-            <React.Fragment>
-                <div className="card-deck mb-3">
-                    {normalizeData[0]
-                        ? normalizeData[0].assignments.map(() => {
-                              return <AssignmentItem key={1} />;
-                          })
-                        : null}
+        return chunkedAssignments.map((rowOfAssignments, i) => {
+            return (
+                <div className="card-deck mb-3" key={i}>
+                    {rowOfAssignments.map(assignment => {
+                        return (
+                            <AssignmentItem
+                                key={assignment.assignment._id}
+                                isEndAssignment={assignment.isEndAssignment}
+                            />
+                        );
+                    })}
                 </div>
-            </React.Fragment>
-        );
+            );
+        });
     }
 }
 
