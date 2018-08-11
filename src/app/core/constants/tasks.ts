@@ -8,6 +8,7 @@ export const TasksData = [
     {
         _id: '32123',
         name: 'asd',
+        status: 'Not submitted yet!',
         url: 'asdasdadsasdasdasd,asdasd.asdasd',
     },
     {
