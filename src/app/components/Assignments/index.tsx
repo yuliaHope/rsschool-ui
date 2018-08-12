@@ -6,7 +6,6 @@ import { IAssignment, IAssignmentDocument } from 'core/models';
 type AssignmentsProps = {
     courseId: string;
     normalizeData: NormalizeAssignmentsData[];
-    isAdmin: boolean;
     submitSolution: (assignment: IAssignment) => void;
 };
 
