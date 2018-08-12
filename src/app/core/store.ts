@@ -6,7 +6,6 @@ import IHotModule from './models/hot-module.model';
 import rootReducer from './reducers';
 // import rootSaga from './sagas';
 import thunk from 'redux-thunk';
-
 declare const module: IHotModule;
 
 const configureStore = (history: History) => {
