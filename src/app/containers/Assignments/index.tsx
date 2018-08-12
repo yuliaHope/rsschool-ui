@@ -44,30 +44,34 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
     render() {
         const { isAdmin, courseId, normalizeData } = this.props;
         return (
-            <div className="schedule">
-                <h2>TASKS</h2>
-                <div className="row">
-                    <div className="col-6">
-                        <p>
-                            Your github private repository
-                            <a className="badge badge-dark" href="#">
-                                here
-                            </a>
-                        </p>
-                    </div>
-                    <div className="col-6 text-right">
-                        <p>You are in the TOP 50 students!</p>
-                        <p>Full Score: 200</p>
-                    </div>
-                </div>
+            <React.Fragment>
+                {!isAdmin && (
+                    <div className="tasks">
+                        <h2>TASKS</h2>
+                        <div className="row">
+                            <div className="col-6">
+                                <p>
+                                    Your github private repository
+                                    <a className="badge badge-dark" href="#">
+                                        here
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 text-right">
+                                <p>You are in the TOP 50 students!</p>
+                                <p>Full Score: 200</p>
+                            </div>
+                        </div>
 
-                <Assignments
-                    courseId={courseId}
-                    normalizeData={normalizeData}
-                    isAdmin={isAdmin}
-                    submitSolution={this.props.submitSolution}
-                />
-            </div>
+                        <Assignments
+                            courseId={courseId}
+                            normalizeData={normalizeData}
+                            isAdmin={isAdmin}
+                            submitSolution={this.props.submitSolution}
+                        />
+                    </div>
+                )}
+            </React.Fragment>
         );
     }
 }
