@@ -14,19 +14,21 @@ const TaskItem = ({ task }: Props): JSX.Element => {
                 <p>{task.url}</p>
             </div>
             <div>
-                <small>
-                    <form>
-                        <div>
-                            <label>Choose repo</label>
-                            <input type="text" />
-                        </div>
-                        <div>
-                            <label>Comments</label>
-                            <input type="text" />
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </small>
+                {task.attested ? null : (
+                    <small>
+                        <form>
+                            <div>
+                                <label>Choose repo</label>
+                                <input type="text" />
+                            </div>
+                            <div>
+                                <label>Comments</label>
+                                <input type="text" />
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </small>
+                )}
             </div>
         </div>
     );

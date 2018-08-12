@@ -3,4 +3,5 @@ export interface ITaskData {
     name: string;
     status: string;
     url: string;
+    attested: boolean;
 }

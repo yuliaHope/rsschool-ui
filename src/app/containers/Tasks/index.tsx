@@ -42,7 +42,7 @@ class Tasks extends React.Component<Props> {
                     Your github private repository <a href="#">Link TO Git</a>
                 </p>
                 {tasksData ? tasksData.map(elem => <TaskItem task={elem} key={elem._id} />) : <div>Loading</div>}
-                {error ? <div>Error</div> : <React.Fragment />}
+                {error ? <div>Error</div> : null}
             </React.Fragment>
         );
     }
