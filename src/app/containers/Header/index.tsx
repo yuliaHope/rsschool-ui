@@ -76,13 +76,13 @@ class Header extends React.Component<Props, any> {
                                 </NavLink>
                             </li>
                         )}
-                        {this.props.hasCourse && (
-                            <li className="nav-item">
+                        {
+                            /* this.props.hasCourse && */ <li className="nav-item">
                                 <NavLink className="nav-link" to={`/course/${couserId}/tasks`}>
                                     Tasks
                                 </NavLink>
                             </li>
-                        )}
+                        }
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/profile">
                                 Profile
