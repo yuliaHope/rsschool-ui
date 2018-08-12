@@ -1,55 +1,89 @@
-// import {  } from 'core/actions';
-// import {  } from 'core/models';
-// import { RootState } from 'core/reducers';
+import { fetchAssignments, submitSolution } from 'core/actions';
+import { IAssignment } from 'core/models';
+import { RootState } from 'core/reducers';
 import { classNames } from 'core/styles';
 import * as React from 'react';
-// import { connect } from 'react-redux';
-// import { } from 'reactstrap';
+import { connect } from 'react-redux';
 import TaskForm from 'components/taskForm';
 import buildTaskForm from 'components/taskForm/utils/buildTaskFrom';
+import { CardDeck } from 'reactstrap';
 
 const cn = classNames(require('./index.scss'));
 
-/* const mapStateToProps = (state: RootState, props: any): Props => {
+const mapStateToProps = (state: RootState, props: any): AssigmentContainerProps => {
     return {
         ...props,
+        isLoading: state.assignments.isLoading,
+        courseId: props.match.params.id,
+        studentId: state.user.username,
+        assignments: state.assignments,
     };
 };
 
-const mapDispatchToProps = (dispatch: any, props: Props): Props => {
+const mapDispatchToProps = (dispatch: any, props: any): AssigmentContainerProps => {
     return {
         ...props,
-         fetchCourses: () => {
-            dispatch(fetchAllCourses());
+        onLoad: (courseId: string, studentId: string) => {
+            dispatch(fetchAssignments(courseId, studentId));
+        },
+        submitTask: (assignment: IAssignment) => {
+            dispatch(submitSolution(assignment));
         },
     };
 };
 
-type Props = {
-    fetchCourses: () => void;
-}; */
+type AssigmentContainerProps = {
+    onLoad: (courseId: string, studentId: string) => void;
+    submitTask: (assignment: IAssignment) => void;
+    studentId: string;
+    courseId: string;
+    isLoading: boolean;
+    assignments: any;
+};
 
 const Temp = {
-    isLoading: false,
     github: 'fdsfsd',
     score: 100,
 };
 
-const temp = {
-    title: 'Exchange money',
-    assigmentRepo: 'htppfsdfsd',
-    status: 'Assigned',
-    score: 0,
-};
-
 const BuildTaskForm = buildTaskForm(TaskForm);
 
-export default class Tasks extends React.Component {
+class Tasks extends React.Component<AssigmentContainerProps> {
+    constructor(props: AssigmentContainerProps) {
+        super(props);
+    }
+
+    async componentDidMount() {
+        const { courseId, studentId } = this.props;
+        await this.props.onLoad(courseId, studentId);
+    }
+
+    generateTasks() {
+        const results: any = [];
+        const { assignments } = this.props.assignments;
+        const { submitTask } = this.props;
+
+        assignments.forEach((item: any, i: number) => {
+            const props = {
+                title: 'Exchange money',
+                urlToDescription: 'htppfsdfsd',
+                taskId: item.taskId,
+                studentId: item.studentId,
+                status: item.status,
+                score: item.score,
+                submit: submitTask.bind(item),
+            };
+            results.push(<BuildTaskForm key={i} {...props} />);
+        });
+        return results;
+    }
+
     render() {
+        const { isLoading } = this.props;
         return (
             <div className={cn('tasks')}>
                 <h2>Tasks</h2>
-                {Temp.isLoading ? (
+                {isLoading ? (
                     <h3>Loading...</h3>
                 ) : (
                     <section>
@@ -67,9 +101,7 @@ export default class Tasks extends React.Component {
                                 <p>Full Score: {Temp.score}</p>
                             </div>
                         </div>
-                        <div className="card-deck mb-3">
-                            <BuildTaskForm {...temp} />
-                        </div>
+                        <CardDeck>{this.generateTasks()}</CardDeck>
                     </section>
                 )}
             </div>
@@ -77,7 +109,7 @@ export default class Tasks extends React.Component {
     }
 }
 
-/* export default connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Tasks); */
+)(Tasks);
