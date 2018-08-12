@@ -23,7 +23,6 @@ const configureStore = (history: History) => {
             store.replaceReducer(nextRootReducer);
         });
     }
-
     return store;
 };
 
