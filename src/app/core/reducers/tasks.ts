@@ -22,6 +22,7 @@ export function tasksReducer(state = initialState, action: Action<any>): TasksSt
         }
         case TASKS_DATA_FAILED: {
             return {
+                tasks: [],
                 error: action.payload.error,
                 loading: action.payload.loading,
             };

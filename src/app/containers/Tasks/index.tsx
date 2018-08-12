@@ -34,14 +34,15 @@ class Tasks extends React.Component<Props> {
         this.props.fetchTasksData('asdasd');
     }
     render() {
-        const { tasksData } = this.props;
+        const { tasksData, error } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
                 <p>
                     Your github private repository <a href="#">Link TO Git</a>
                 </p>
-                {tasksData ? tasksData.map(elem => <TaskItem task={elem} key={elem._id} />) : <div>Загрузка</div>}
+                {tasksData ? tasksData.map(elem => <TaskItem task={elem} key={elem._id} />) : <div>Loading</div>}
+                {error ? <div>Error</div> : <React.Fragment />}
             </React.Fragment>
         );
     }

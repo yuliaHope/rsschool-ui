@@ -9,6 +9,7 @@ export function fetchTasks(courseId: string) {
         });
         try {
             await pause();
+            // throw  Error();
             dispatch({
                 type: TASKS_DATA_SUCCESS,
                 payload: { data: TasksData, loading: false, error: undefined, id: courseId },
