@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IUserSession } from 'core/models';
+import { IUserSession } from '../models';
 
 type SessionResponse = {
     data: IUserSession;
