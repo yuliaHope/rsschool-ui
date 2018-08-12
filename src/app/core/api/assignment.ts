@@ -100,21 +100,6 @@ const data = {
             checkDate: 2,
             status: 'Assigned',
         },
-        {
-            _id: 7,
-            taskId: 2,
-            courseId: 2,
-            studentId: 2,
-            mentorId: 2,
-            studentComment: 'studentComment',
-            mentorComment: 'mentorComment',
-            score: null,
-            assignmentRepo: 'https://github.com/rolling-scopes/rsschool-docs/tree/mvp',
-            deadlineDate: 1,
-            completeDate: 123,
-            checkDate: 2,
-            status: 'Assigned',
-        },
     ],
 };
 
