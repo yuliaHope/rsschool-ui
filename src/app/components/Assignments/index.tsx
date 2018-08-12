@@ -2,7 +2,6 @@ import * as React from 'react';
 import AssignmentItem from './AssignmentItem';
 import { NormalizeAssignmentsData } from 'core/helpers';
 import { IAssignment, IAssignmentDocument } from 'core/models';
-import './index.scss';
 
 type AssignmentsProps = {
     courseId: string;

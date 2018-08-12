@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { Button, Form, FormGroup, Label, Input, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import { classNames } from 'core/styles';
+import './index.scss';
+
+const cn = classNames(require('./index.scss'));
 
 type AssignmentItemProps = {
     isEndAssignment: boolean;
@@ -29,66 +34,68 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps, Assignment
     render() {
         const { status, score } = this.state;
         return (
-            <div
-                className={`card bg-secondary mb-3
-                ${
+            <Card
+                className={`bm-3 ${
                     status === 'Checked' && score < 100
                         ? 'border-warning'
                         : status === 'Checked' && score === 100
                             ? `border-success`
                             : status === 'MissedDeadline'
                                 ? `border-danger`
-                                : ``
+                                : `bg-secondary`
                 }`}
             >
                 {status === 'Assigned' ? (
-                    <div className="card-header">Not submitted yet!</div>
+                    <CardHeader>Not submitted yet!</CardHeader>
                 ) : status === 'Checked' && score < 100 ? (
-                    <div className="card-header text-white bg-warning">
-                        Not submitted yet! <span className="score">{score}%</span>
-                    </div>
+                    <CardHeader className="text-white bg-warning">
+                        Not submitted yet!
+                        <span className={cn('score')}>{score}%</span>
+                    </CardHeader>
                 ) : status === 'Checked' && score === 100 ? (
-                    <div className="card-header text-white bg-success">
-                        Done! <span className="score">{score}%</span>
-                    </div>
+                    <CardHeader className="text-white bg-success">
+                        Done!
+                        <span className={cn('score')}>{score}%</span>
+                    </CardHeader>
                 ) : status === 'MissedDeadline' ? (
-                    <div className="card-header text-white bg-danger">The deadline has passed</div>
+                    <CardHeader className="text-white bg-danger">The deadline has passed </CardHeader>
                 ) : null}
-                <div className="card-body">
+                <CardBody>
                     <h5 className="card-title">CodeWars Tasks</h5>
                     <p className="card-text">Some quick example text to build on the card title .</p>
-                </div>
+                </CardBody>
                 {status === 'Assigned' && (
-                    <div className="card-footer">
+                    <CardFooter className={cn('card-footer')}>
                         <small className="text-muted">
-                            <form onSubmit={this.handleSubmitSolution}>
-                                <div className="form-group">
-                                    <label htmlFor="exampleInputEmail1">Choose repo</label>
-                                    <input
+                            <Form onSubmit={this.handleSubmitSolution}>
+                                <FormGroup>
+                                    <Label for="exampleInputEmail1">Choose repo</Label>
+                                    <Input
                                         type="text"
-                                        className="form-control form-control-sm"
+                                        bsSize="sm"
                                         id="exampleInputEmail1"
                                         aria-describedby="emailHelp"
                                         placeholder="Enter link"
                                     />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="exampleInputEmail9">Comments</label>
-                                    <textarea
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="exampleInputEmail9">Comments</Label>
+                                    <Input
+                                        type="textarea"
                                         rows={3}
-                                        className="form-control form-control-sm"
+                                        bsSize="sm"
                                         id="exampleInputEmail9"
                                         placeholder="Write comments here"
                                     />
-                                </div>
-                                <button type="submit" className="btn btn-primary btn-sm">
+                                </FormGroup>
+                                <Button type="submit" color="primary" size="sm">
                                     Submit
-                                </button>
-                            </form>
+                                </Button>
+                            </Form>
                         </small>
-                    </div>
+                    </CardFooter>
                 )}
-            </div>
+            </Card>
         );
     }
 }
