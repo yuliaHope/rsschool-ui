@@ -38,6 +38,7 @@ type AssigmentContainerProps = {
     studentId: string;
     courseId: string;
     isLoading: boolean;
+    error: boolean | undefined;
     assignments: any;
 };
 
@@ -79,7 +80,7 @@ class Tasks extends React.Component<AssigmentContainerProps> {
     }
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading, error } = this.props;
         return (
             <div className={cn('tasks')}>
                 <h2>Tasks</h2>
@@ -101,7 +102,13 @@ class Tasks extends React.Component<AssigmentContainerProps> {
                                 <p>Full Score: {Temp.score}</p>
                             </div>
                         </div>
-                        <CardDeck>{this.generateTasks()}</CardDeck>
+                        <CardDeck>
+                            {(() => {
+                                if (!isLoading && !error) {
+                                    return this.generateTasks();
+                                }
+                            })()}
+                        </CardDeck>
                     </section>
                 )}
             </div>
