@@ -2,13 +2,15 @@ import * as React from 'react';
 import TaskItem from 'components/TaskItem';
 import { connect } from 'react-redux';
 import { RootState } from 'core/reducers';
-import { fetchTasks } from 'core/actions';
+import { fetchTasks, fetchSolution } from 'core/actions';
 import { ITaskData } from 'core/models';
 type Props = {
     tasksData?: Array<ITaskData>;
     loading: boolean;
     error: any;
+    solutionError: any;
     fetchTasksData: (courseId: string) => void;
+    fetchTaskSolution: (taskId: string) => void;
 };
 
 const mapStateToProps = (state: RootState, props: any): Props => {
@@ -17,6 +19,7 @@ const mapStateToProps = (state: RootState, props: any): Props => {
         tasksData: state.tasks.tasks,
         loading: state.tasks.loading,
         error: state.tasks.error,
+        solutionError: state.tasks.solutionError,
     };
 };
 
@@ -26,6 +29,9 @@ const mapDispatchToProps = (dispatch: any, props: any): Props => {
         fetchTasksData: (courseId: string) => {
             dispatch(fetchTasks(courseId));
         },
+        fetchTaskSolution: (taskId: string) => {
+            dispatch(fetchSolution(taskId));
+        },
     };
 };
 
@@ -34,14 +40,24 @@ class Tasks extends React.Component<Props> {
         this.props.fetchTasksData('asdasd');
     }
     render() {
-        const { tasksData, error } = this.props;
+        const { tasksData, error, fetchTaskSolution } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
-                <p>
-                    Your github private repository <a href="#">Link TO Git</a>
-                </p>
-                {tasksData ? tasksData.map(elem => <TaskItem task={elem} key={elem._id} />) : <div>Loading</div>}
+                <div>
+                    <p>
+                        Your github private repository <a href="#">Link TO Git</a>
+                    </p>
+                </div>
+                <div>
+                    <p>You are in the TOP 50 students!</p>
+                    <p>Full Score: 200</p>
+                </div>
+                {tasksData ? (
+                    tasksData.map(elem => <TaskItem task={elem} key={elem._id} fetchTaskSolution={fetchTaskSolution} />)
+                ) : (
+                    <div>Loading</div>
+                )}
                 {error ? <div>Error</div> : null}
             </React.Fragment>
         );

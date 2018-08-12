@@ -1,4 +1,12 @@
-import { TASKS_DATA_REQUEST, TASKS_DATA_FAILED, TASKS_DATA_SUCCESS, TasksData } from '../constants';
+import {
+    TASKS_DATA_REQUEST,
+    TASKS_DATA_FAILED,
+    TASKS_DATA_SUCCESS,
+    SEND_USER_SOLUTION,
+    SET_MARK_SOLUTION,
+    SET_SOLUTION_FAILED,
+    TasksData,
+} from '../constants';
 import { pause } from '../util';
 
 export function fetchTasks(courseId: string) {
@@ -18,6 +26,26 @@ export function fetchTasks(courseId: string) {
             dispatch({
                 type: TASKS_DATA_FAILED,
                 payload: { error: e, loading: false },
+            });
+        }
+    };
+}
+export function fetchSolution(taskId: string) {
+    return async (dispatch: any) => {
+        dispatch({
+            type: SEND_USER_SOLUTION,
+            payload: { id: taskId, error: undefined },
+        });
+        try {
+            await pause();
+            dispatch({
+                type: SET_MARK_SOLUTION,
+                payload: { id: taskId, error: undefined },
+            });
+        } catch (e) {
+            dispatch({
+                type: SET_SOLUTION_FAILED,
+                payload: e,
             });
         }
     };
