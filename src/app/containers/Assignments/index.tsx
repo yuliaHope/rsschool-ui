@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-
+import { Row, Col, Badge } from 'reactstrap';
 import Assignments from 'components/Assignments';
 import { fetchAssignments, submitSolution } from 'core/actions';
 import { NormalizeAssignmentsData } from 'core/helpers';
 import { IAssignment } from 'core/models';
+import { classNames } from 'core/styles';
 import './index.scss';
+
+const cn = classNames(require('./index.scss'));
 
 const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
     return {
@@ -48,25 +51,24 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
                 {!isAdmin && (
                     <div className="tasks">
                         <h2>TASKS</h2>
-                        <div className="row">
-                            <div className="col-6">
+                        <Row>
+                            <Col xs="6">
                                 <p>
                                     Your github private repository
-                                    <a className="badge badge-dark" href="#">
+                                    <Badge color="dark" href="#" className={cn('badge')}>
+                                        {' '}
                                         here
-                                    </a>
+                                    </Badge>
                                 </p>
-                            </div>
-                            <div className="col-6 text-right">
+                            </Col>
+                            <Col xs="6" className="text-right">
                                 <p>You are in the TOP 50 students!</p>
                                 <p>Full Score: 200</p>
-                            </div>
-                        </div>
-
+                            </Col>
+                        </Row>
                         <Assignments
                             courseId={courseId}
                             normalizeData={normalizeData}
-                            isAdmin={isAdmin}
                             submitSolution={this.props.submitSolution}
                         />
                     </div>
