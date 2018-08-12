@@ -3,6 +3,7 @@ import { ASSIGNMENT } from '../constants';
 import { Action } from '../util';
 
 export type AssignmentsState = {
+    isLoading: boolean;
     assignments: IAssignmentDocument[];
     error: Error | undefined;
 };
@@ -10,6 +11,7 @@ export type AssignmentsState = {
 const initialState: AssignmentsState = {
     assignments: [],
     error: undefined,
+    isLoading: true,
 };
 
 export function assignmentReducer(state = initialState, action: Action<any>): AssignmentsState {
@@ -18,6 +20,12 @@ export function assignmentReducer(state = initialState, action: Action<any>): As
             return {
                 ...state,
                 assignments: action.payload,
+                isLoading: false,
+            };
+        }
+        case ASSIGNMENT.LOADING: {
+            return {
+                ...state,
             };
         }
         default:

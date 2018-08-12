@@ -6,7 +6,7 @@ export enum AssignmentStatus {
 }
 
 export interface IAssignment {
-    taskId: string;
+    taskId: number;
     courseId: string;
     studentId: string;
     mentorId: string;
@@ -18,6 +18,7 @@ export interface IAssignment {
     completeDate: number;
     checkDate: number;
     status: AssignmentStatus;
+    [key: number]: any;
 }
 
 export interface IAssignmentDocument extends IAssignment {

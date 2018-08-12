@@ -5,9 +5,12 @@ const cn = classNames(require('../index.scss'));
 
 type Props = {
     title: string;
-    assigmentRepo: string;
+    urlToDescription: string;
     status: string;
+    taskId: number;
+    studentId: string;
     score: number;
+    submit: any;
 };
 
 interface IConfig {
@@ -43,11 +46,12 @@ const config: IConfig = {
 const buildTaskForm = (HostComponent: any) => {
     return class BuildTaskForm extends React.PureComponent<Props> {
         render() {
-            const { assigmentRepo, status, score, title } = this.props;
+            const { taskId, studentId, urlToDescription, status, score, title, submit } = this.props;
             let formTitle;
             let borderStyle;
             let headerStyle;
-            let isSubmit;
+            let isSubmit = false;
+
             if (status === 'Checked') {
                 const { style } = config.Checked;
                 formTitle = (
@@ -65,8 +69,6 @@ const buildTaskForm = (HostComponent: any) => {
             if (status !== 'Assigned') {
                 isSubmit = true;
                 headerStyle = borderStyle + ' text-white';
-            } else {
-                isSubmit = false;
             }
 
             return (
@@ -75,8 +77,11 @@ const buildTaskForm = (HostComponent: any) => {
                     headerStyle={headerStyle}
                     borderStyle={borderStyle}
                     title={title}
-                    link={assigmentRepo}
+                    link={urlToDescription}
+                    taskId={taskId}
+                    studentId={studentId}
                     isSubmit={isSubmit}
+                    submit={submit}
                 />
             );
         }
