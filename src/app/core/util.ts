@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux';
-
 import { SCHEDULE } from './constants';
 import { IEventDocument, IStageDocument } from './models';
 
@@ -65,3 +64,9 @@ export interface Action<T> extends AnyAction {
     type: string;
     payload?: T;
 }
+const TIME_PAUSE = 1500;
+export const pause = async () => {
+    return new Promise(resolve => {
+        setTimeout(resolve, TIME_PAUSE);
+    });
+};
