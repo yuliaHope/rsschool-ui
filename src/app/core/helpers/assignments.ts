@@ -1,5 +1,3 @@
-// import { DateTime, Interval } from 'luxon';
-
 import { IAssignmentDocument } from '../models';
 
 type INormalizeAssignments = {
@@ -12,44 +10,33 @@ export type NormalizeAssignmentsData = {
 };
 
 export const getNormalizeAssignmentsData = (assignments: IAssignmentDocument[]): NormalizeAssignmentsData[] => {
-    const dateNow = Date.now();
-    const sortedAssignments = assignments.reduce<INormalizeAssignments[]>((res, assignment) => {
-        // console.log(assignment.deadlineDate, dateNow);
-        if (assignment.deadlineDate > dateNow) {
-            res.push({ assignment, isEndAssignment: false });
-        } else {
-            res.push({ assignment, isEndAssignment: true });
-        }
-        return res;
-    }, []);
-    // console.log(sortedAssignments);
+    const sortedAssignments = assignments
+        .reduce<INormalizeAssignments[]>((res, assignment) => {
+            if (assignment.deadlineDate < Date.now() && assignment.score === null) {
+                res.push({ assignment, isEndAssignment: true });
+            } else {
+                res.push({ assignment, isEndAssignment: false });
+            }
+            return res;
+        }, [])
+        .sort((assignmentA, assignmentB) => {
+            const a = assignmentA.assignment.deadlineDate!;
+            const b = assignmentB.assignment.deadlineDate!;
+            return b - a;
+        });
     const initialData = sortedAssignments.reduce<NormalizeAssignmentsData[]>(
         res => {
             return res;
         },
         [{ assignments: [] }],
     );
-    // console.log(sortedAssignments);
     const data = sortedAssignments.reduce<NormalizeAssignmentsData[]>((res, normalizeAssignment) => {
-        for (let index = 0; index < res.length; index++) {
-            /* 123
-            123
-            123
-            123
-            123
-            123
-             */
-            if (index) {
-                const item = res[index];
-                item.assignments.push(normalizeAssignment);
-            } else {
-                const item = res[index];
+        for (const item of res) {
+            if (item) {
                 item.assignments.push(normalizeAssignment);
             }
         }
-        // console.log(res);
         return res;
     }, initialData);
-    // data;
     return data;
 };
