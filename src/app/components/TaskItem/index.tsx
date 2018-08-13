@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { ITaskData } from 'core/models';
+import { classNames } from '../../core/styles';
+
+const cn = classNames(require('./index.scss'));
 
 type Props = {
     task: ITaskData;
@@ -27,26 +30,37 @@ class TaskItem extends React.Component<Props> {
     render() {
         const { task } = this.props;
         return (
-            <div>
-                <div>{task.status}</div>
-                <div>
-                    <h5>{task.name}</h5>
-                    <p>{task.url}</p>
+            <div className={cn('three-in-row', 'card', 'bg-secondary', 'mb-3')}>
+                <div className="card-header">{task.status}</div>
+                <div className="card-body">
+                    <h5 className="card-title">{task.name}</h5>
+                    <p className="card-text">{task.url}</p>
                 </div>
-                <div>
+                <div className="card-footer">
                     {task.attested ? null : (
-                        <small>
+                        <small className="text-muted">
                             <form>
-                                <div>
+                                <div className="form-group">
                                     <label>Choose repo</label>
-                                    <input type="text" ref={this.studentRepo} />
+                                    <input
+                                        className="form-control form-control-sm"
+                                        type="text"
+                                        ref={this.studentRepo}
+                                        placeholder="Enter link"
+                                    />
                                 </div>
-                                <div>
+                                <div className="form-group">
                                     <label>Comments</label>
-                                    <input type="text" ref={this.studentComment} />
+                                    <input
+                                        className="form-control form-control-sm"
+                                        type="text"
+                                        ref={this.studentComment}
+                                        placeholder="Write comments here"
+                                    />
                                 </div>
                                 <button
                                     type="submit"
+                                    className="btn btn-primary btn-sm"
                                     onClick={ev => {
                                         ev.preventDefault();
                                         this.SendStudentTask(task._id);

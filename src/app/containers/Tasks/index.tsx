@@ -44,21 +44,30 @@ class Tasks extends React.Component<Props> {
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
-                <div>
-                    <p>
-                        Your github private repository <a href="#">Link TO Git</a>
-                    </p>
+                <div className="row">
+                    <div className="col-6">
+                        <p>
+                            Your github private repository{' '}
+                            <a className="badge badge-dark" href="#">
+                                Link TO Git
+                            </a>
+                        </p>
+                    </div>
+                    <div className="col-6 text-right">
+                        <p>You are in the TOP 50 students!</p>
+                        <p>Full Score: 200</p>
+                    </div>
                 </div>
-                <div>
-                    <p>You are in the TOP 50 students!</p>
-                    <p>Full Score: 200</p>
+                <div className="card-deck mb-3">
+                    {tasksData ? (
+                        tasksData.map(elem => (
+                            <TaskItem task={elem} key={elem._id} fetchTaskSolution={fetchTaskSolution} />
+                        ))
+                    ) : (
+                        <div>Loading</div>
+                    )}
+                    {error ? <div>Error</div> : null}
                 </div>
-                {tasksData ? (
-                    tasksData.map(elem => <TaskItem task={elem} key={elem._id} fetchTaskSolution={fetchTaskSolution} />)
-                ) : (
-                    <div>Loading</div>
-                )}
-                {error ? <div>Error</div> : null}
             </React.Fragment>
         );
     }
