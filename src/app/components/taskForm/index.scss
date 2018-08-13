@@ -34,3 +34,21 @@
 .bg-secondary {
     background-color: none;
 }
+
+.bg-danger, 
+.bg-success,
+.bg-warning {
+    color: #fff;  
+}
+
+.bg-danger {
+    background-color: #d9534f!important;
+}
+
+.bg-success {
+    background-color: #4bbf73!important;
+}
+
+.bg-warning {
+    background-color: #f0ad4e!important;
+}

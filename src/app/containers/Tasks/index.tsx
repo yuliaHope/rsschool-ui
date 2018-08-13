@@ -4,8 +4,8 @@ import { RootState } from 'core/reducers';
 import { classNames } from 'core/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import TaskForm from 'components/taskForm';
-import buildTaskForm from 'components/taskForm/utils/buildTaskFrom';
+import TaskForm from 'components/TaskForm';
+import buildTaskForm from 'components/TaskForm/utils/buildTaskForm';
 import { CardDeck } from 'reactstrap';
 
 const cn = classNames(require('./index.scss'));

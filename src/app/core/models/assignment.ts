@@ -5,6 +5,21 @@ export enum AssignmentStatus {
     Checked = 'Checked',
 }
 
+export enum AssignmentTitle {
+    Assigned = 'Not submitted yet!',
+    ReadyForReview = 'Ready For Review',
+    Rejected = 'The deadline has passed!',
+    Checked = 'Done',
+}
+
+export enum AssignmentStyle {
+    Assigned = 'secondary',
+    ReadyForReview = 'warning',
+    Rejected = 'danger',
+    Full = 'success',
+    Half = 'warning',
+}
+
 export interface IAssignment {
     taskId: number;
     courseId: string;
@@ -18,7 +33,7 @@ export interface IAssignment {
     completeDate: number;
     checkDate: number;
     status: AssignmentStatus;
-    [key: number]: any;
+    [key: number]: any; // Delete or change
 }
 
 export interface IAssignmentDocument extends IAssignment {
