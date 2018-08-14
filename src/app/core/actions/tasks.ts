@@ -30,13 +30,14 @@ export function fetchTasks(courseId: string) {
         }
     };
 }
-export function fetchSolution(taskId: string) {
+export function fetchSolution(taskId: string, courseId: string) {
     return async (dispatch: any) => {
         dispatch({
             type: SEND_USER_SOLUTION,
-            payload: { id: taskId, error: undefined },
+            payload: { id: taskId, error: undefined, idCourse: courseId },
         });
         try {
+            // when i write backEnd Api, i will remove this action
             await pause();
             dispatch({
                 type: SET_MARK_SOLUTION,
