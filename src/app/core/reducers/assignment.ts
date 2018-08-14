@@ -28,6 +28,13 @@ export function assignmentReducer(state = initialState, action: Action<any>): As
                 ...state,
             };
         }
+        case ASSIGNMENT.FAIL: {
+            return {
+                ...state,
+                isLoading: false,
+                error: new Error(),
+            };
+        }
         default:
             return state;
     }

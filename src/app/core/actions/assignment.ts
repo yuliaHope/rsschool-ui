@@ -9,10 +9,10 @@ export function fetchAssignments(courseId: string, studentId: string) {
         });
 
         try {
-            const assignmentResult = await getAssignmentsById(courseId, studentId);
+            const assignmentsResult = await getAssignmentsById(courseId, studentId);
             dispatch({
                 type: ASSIGNMENT.FETCH_ASSIGNMENTS_OK,
-                payload: assignmentResult,
+                payload: assignmentsResult,
             });
         } catch (e) {
             dispatch({

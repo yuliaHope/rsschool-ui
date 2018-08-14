@@ -5,7 +5,6 @@ import { classNames } from 'core/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import TaskForm from 'components/TaskForm';
-import buildTaskForm from 'components/TaskForm/utils/buildTaskForm';
 import { CardDeck } from 'reactstrap';
 
 const cn = classNames(require('./index.scss'));
@@ -47,8 +46,6 @@ const Temp = {
     score: 100,
 };
 
-const BuildTaskForm = buildTaskForm(TaskForm);
-
 class Tasks extends React.Component<AssigmentContainerProps> {
     constructor(props: AssigmentContainerProps) {
         super(props);
@@ -60,11 +57,10 @@ class Tasks extends React.Component<AssigmentContainerProps> {
     }
 
     generateTasks() {
-        const results: any = [];
         const { assignments } = this.props.assignments;
         const { submitTask } = this.props;
 
-        assignments.forEach((item: any, i: number) => {
+        return assignments.map((item: any, i: number) => {
             const props = {
                 title: 'Exchange money',
                 urlToDescription: 'htppfsdfsd',
@@ -72,11 +68,10 @@ class Tasks extends React.Component<AssigmentContainerProps> {
                 studentId: item.studentId,
                 status: item.status,
                 score: item.score,
-                submit: submitTask.bind(item),
+                submit: submitTask,
             };
-            results.push(<BuildTaskForm key={i} {...props} />);
+            return <TaskForm key={i} {...props} />;
         });
-        return results;
     }
 
     render() {
