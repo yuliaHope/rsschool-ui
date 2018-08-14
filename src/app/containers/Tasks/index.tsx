@@ -1,11 +1,11 @@
 import * as React from 'react';
-import TaskItem from 'components/TaskItem';
+import { TaskItem } from 'components/TaskItem/TaskItem';
 import { connect } from 'react-redux';
 import { RootState } from 'core/reducers';
 import { fetchTasks, fetchSolution } from 'core/actions';
-import { ITaskData } from 'core/models';
+import { IAssignments } from 'core/models';
 type Props = {
-    tasksData?: Array<ITaskData>;
+    tasks?: Array<IAssignments>;
     loading: boolean;
     error: any;
     solutionError: any;
@@ -16,7 +16,7 @@ type Props = {
 const mapStateToProps = (state: RootState, props: any): Props => {
     return {
         ...props,
-        tasksData: state.tasks.tasks,
+        tasks: state.tasks.tasks,
         loading: state.tasks.loading,
         error: state.tasks.error,
         solutionError: state.tasks.solutionError,
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: any, props: any): Props => {
             dispatch(fetchTasks(courseId));
         },
         fetchTaskSolution: (taskId: string) => {
-            dispatch(fetchSolution(taskId));
+            dispatch(fetchSolution(taskId, 'asdas'));
         },
     };
 };
@@ -40,7 +40,7 @@ class Tasks extends React.Component<Props> {
         this.props.fetchTasksData('asdasd');
     }
     render() {
-        const { tasksData, error, fetchTaskSolution } = this.props;
+        const { tasks, error, fetchTaskSolution } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
@@ -59,9 +59,9 @@ class Tasks extends React.Component<Props> {
                     </div>
                 </div>
                 <div className="card-deck mb-3">
-                    {tasksData ? (
-                        tasksData.map(elem => (
-                            <TaskItem task={elem} key={elem._id} fetchTaskSolution={fetchTaskSolution} />
+                    {tasks ? (
+                        tasks.map(elem => (
+                            <TaskItem task={elem} key={elem.taskId} fetchTaskSolution={fetchTaskSolution} />
                         ))
                     ) : (
                         <div>Loading</div>

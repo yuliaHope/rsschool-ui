@@ -8,9 +8,9 @@ import {
     TasksData,
 } from '../constants';
 import { Action, setSolutionStatus, setSolutionMark } from '../util';
-import { ITaskData } from 'core/models';
+import { IAssignments } from 'core/models';
 export type TasksState = {
-    tasks?: Array<ITaskData>;
+    tasks?: Array<IAssignments>;
     loading: boolean;
     error?: any;
     solutionError?: any;
@@ -52,6 +52,7 @@ export function tasksReducer(state = initialState, action: Action<any>): TasksSt
                 solutionError: undefined,
             };
         }
+        // when i write backEnd Api, i will remove this case
         case SET_MARK_SOLUTION: {
             const newData = setSolutionMark(action.payload.id, TasksData);
             return {
