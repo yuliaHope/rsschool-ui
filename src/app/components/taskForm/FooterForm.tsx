@@ -6,45 +6,45 @@ type Props = {
     studentId: string;
 };
 
-export default class CardFooter extends React.Component<Props, any> {
+export default class FooterForm extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
-        this.state = {};
+        this.state = {
+            assignmentRepo: null,
+            studentComment: null,
+        };
     }
 
-    handleRepInput = (event: any) => {
-        this.setState({ assignmentRepo: event.target.value });
+    handleSubmit = (event: any) => {
+        const { submit, taskId, studentId } = this.props;
+        const { assignmentRepo, studentComment } = this.state;
+        event.preventDefault();
+        submit({
+            taskId,
+            studentId,
+            assignmentRepo,
+            studentComment,
+        });
     };
 
-    handleCommentInput = (event: any) => {
-        this.setState({ studentComment: event.target.value });
+    handleChange = (event: any) => {
+        this.setState({ [event.target.name]: event.target.value });
     };
 
     render() {
-        const { submit, taskId, studentId } = this.props;
-        const { assignmentRepo, studentComment } = this.state;
         return (
             <small className="text-muted">
-                <form
-                    onSubmit={e => {
-                        e.preventDefault();
-                        submit({
-                            taskId,
-                            studentId,
-                            assignmentRepo,
-                            studentComment,
-                        });
-                    }}
-                >
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Choose repo</label>
-                        <input
+                        <input // TODO: change to ReduxInput
                             type="text"
                             className="form-control form-control-sm"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Enter link"
-                            onChange={this.handleRepInput}
+                            name="assignmentRepo"
+                            onChange={this.handleChange}
                         />
                     </div>
                     <div className="form-group">
@@ -53,7 +53,8 @@ export default class CardFooter extends React.Component<Props, any> {
                             className="form-control form-control-sm"
                             id="exampleInputEmail9"
                             placeholder="Write comments here"
-                            onChange={this.handleCommentInput}
+                            name="studentComment"
+                            onChange={this.handleChange}
                         />
                     </div>
                     <button type="submit" className="btn btn-primary btn-sm">
