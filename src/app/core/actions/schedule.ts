@@ -101,7 +101,7 @@ export function addEvent(event: IEvent) {
         });
 
         try {
-            const result = await addEventApi(event);
+            const result = await addEventApi(event, event.type);
             dispatch({
                 type: SCHEDULE.ADD_COURSE_EVENT_OK,
                 payload: result,
@@ -122,7 +122,7 @@ export function updateEvent(event: IEventDocument) {
         });
 
         try {
-            const result = await updateEventApi(event);
+            const result = await updateEventApi(event, event.type);
             dispatch({
                 type: SCHEDULE.UPDATE_COURSE_EVENT_OK,
                 payload: result,
@@ -136,14 +136,14 @@ export function updateEvent(event: IEventDocument) {
     };
 }
 
-export function deleteEvent(id: string) {
+export function deleteEvent(id: string, eventType: string) {
     return async (dispatch: any) => {
         dispatch({
             type: SCHEDULE.LOADING,
         });
 
         try {
-            await deleteEventApi(id);
+            await deleteEventApi(id, eventType);
             dispatch({
                 type: SCHEDULE.DELETE_COURSE_EVENT_OK,
                 payload: id,

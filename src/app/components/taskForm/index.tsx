@@ -2,7 +2,7 @@ import * as React from 'react';
 import FooterForm from './FooterForm';
 import HeaderForm from './HeaderForm';
 import { classNames } from 'core/styles';
-import { AssignmentTitle, AssignmentStyle } from 'core/models';
+import { AssignmentStatus, AssignmentTitle, AssignmentStyle } from 'core/models';
 
 const cn = classNames(require('./index.scss'));
 
@@ -21,12 +21,13 @@ declare type TitleKey = keyof typeof AssignmentTitle;
 
 const TaskForm = (props: Props) => {
     const { taskId, studentId, title, urlToDescription, submit, status, score } = props;
+    const { Assigned, Checked } = AssignmentStatus;
 
     let formTitle;
     let formStyle;
-    const isSubmit = status !== 'Assigned';
+    const isSubmit = status !== Assigned;
 
-    if (status === 'Checked') {
+    if (status === Checked) {
         formTitle = (
             <span>
                 {AssignmentTitle[status]}
