@@ -1,5 +1,3 @@
 node_modules/**
 dist/**
 .vscode
-src/app/core/helpers/assignments.ts
-package-lock.json
