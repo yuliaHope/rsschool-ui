@@ -20,8 +20,19 @@ export function assignmentsReducer(state = initialState, action: IScheduleAction
         case ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK: {
             const { assignments } = action.payload;
             return {
+                ...state,
                 error: undefined,
                 assignments,
+                normalizeData: getNormalizeAssignmentsData(assignments),
+            };
+        }
+        case ASSIGNMENT.SUBMIT_USER_SOLUTION_OK: {
+            const result = action.payload;
+            const assignments = state.normalizeData[0].assignments.map(assignment => {
+                return assignment.assignment._id === result._id ? result : assignment.assignment;
+            });
+            return {
+                ...state,
                 normalizeData: getNormalizeAssignmentsData(assignments),
             };
         }

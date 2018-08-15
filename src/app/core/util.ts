@@ -22,6 +22,11 @@ interface IFetchAssignmentsOkAction {
     };
 }
 
+interface ISubmitUserSolutionOkAction {
+    type: ASSIGNMENT.SUBMIT_USER_SOLUTION_OK;
+    payload: IAssignmentDocument;
+}
+
 interface IFailAction {
     type: SCHEDULE.FAIL;
     payload: Error;
@@ -62,6 +67,7 @@ export type IScheduleAction =
     | IFailAction
     | IFetchCourseEventsAndStagesOkAction
     | IFetchAssignmentsOkAction
+    | ISubmitUserSolutionOkAction
     | IAddCourseStageOkAction
     | IUpdateCourseStageOkAction
     | IDeleteCourseStageOkAction

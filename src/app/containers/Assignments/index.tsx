@@ -4,7 +4,7 @@ import { Row, Col, Badge } from 'reactstrap';
 import Assignments from 'components/Assignments';
 import { fetchAssignments, submitSolution } from 'core/actions';
 import { NormalizeAssignmentsData } from 'core/helpers';
-import { IAssignment } from 'core/models';
+import { IAssignmentDocument } from 'core/models';
 import { classNames } from 'core/styles';
 import './index.scss';
 
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProp
         onLoad: id => {
             dispatch(fetchAssignments(id));
         },
-        submitSolution: (assignment: IAssignment) => {
+        submitSolution: assignment => {
             dispatch(submitSolution(assignment));
         },
     };
@@ -36,7 +36,7 @@ type AssignmentsContainerProps = {
     onLoad: (id: string) => void;
     courseId: string;
     isAdmin: boolean;
-    submitSolution: (assignments: IAssignment) => void;
+    submitSolution: (assignment: IAssignmentDocument) => void;
 };
 
 class AssignmentsContainer extends React.Component<AssignmentsContainerProps, any> {

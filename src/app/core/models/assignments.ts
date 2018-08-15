@@ -21,5 +21,5 @@ export interface IAssignment {
 }
 
 export interface IAssignmentDocument extends IAssignment {
-    _id: string;
+    _id: number;
 }

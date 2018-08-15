@@ -1,6 +1,6 @@
 import { ASSIGNMENT } from '../constants';
 import { getAssignmentsByCourseId, submitSolutionApi } from '../api';
-import { IAssignment } from '../models';
+import { IAssignmentDocument } from '../models';
 
 export function fetchAssignments(courseId: string) {
     return async (dispatch: any) => {
@@ -23,7 +23,7 @@ export function fetchAssignments(courseId: string) {
     };
 }
 
-export function submitSolution(assignment: IAssignment) {
+export function submitSolution(assignment: IAssignmentDocument) {
     return async (dispatch: any) => {
         dispatch({
             type: ASSIGNMENT.LOADING,

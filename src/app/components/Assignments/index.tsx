@@ -1,54 +1,32 @@
 import * as React from 'react';
 import AssignmentItem from './AssignmentItem';
 import { NormalizeAssignmentsData } from 'core/helpers';
-import { IAssignment, IAssignmentDocument } from 'core/models';
+import { IAssignmentDocument } from 'core/models';
 
 type AssignmentsProps = {
     courseId: string;
     normalizeData: NormalizeAssignmentsData[];
-    submitSolution: (assignment: IAssignment) => void;
+    submitSolution: (assignment: IAssignmentDocument) => void;
 };
 
-type AssignmentsState = {
-    assignment: IAssignmentDocument | undefined;
+const Assignments = (props: AssignmentsProps) => {
+    const { normalizeData } = props;
+    return (
+        <div className="card-deck mb-3 justify-content-center">
+            {normalizeData[0]
+                ? normalizeData[0].assignments.map(assignment => {
+                      return (
+                          <AssignmentItem
+                              key={assignment.assignment._id}
+                              assignment={assignment.assignment}
+                              isEndAssignment={assignment.isEndAssignment}
+                              submitSolution={props.submitSolution}
+                          />
+                      );
+                  })
+                : null}
+        </div>
+    );
 };
-
-class Assignments extends React.PureComponent<AssignmentsProps, AssignmentsState> {
-    state: AssignmentsState = {
-        assignment: undefined,
-    };
-
-    handleSubmitSolution = () => {
-        // console.log('submiting data');
-    };
-
-    render() {
-        const { normalizeData } = this.props;
-        const chunkedAssignments = normalizeData[0]
-            ? normalizeData[0].assignments.reduce<any[][]>((prev, next, index) => {
-                  if (index % 3 === 0) {
-                      prev.push([]);
-                  }
-                  prev[prev.length - 1].push(next);
-                  return prev;
-              }, [])
-            : [];
-
-        return chunkedAssignments.map((rowOfAssignments, i) => {
-            return (
-                <div className="card-deck mb-3" key={i}>
-                    {rowOfAssignments.map(assignment => {
-                        return (
-                            <AssignmentItem
-                                key={assignment.assignment._id}
-                                isEndAssignment={assignment.isEndAssignment}
-                            />
-                        );
-                    })}
-                </div>
-            );
-        });
-    }
-}
 
 export default Assignments;
