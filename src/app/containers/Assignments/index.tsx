@@ -16,13 +16,14 @@ const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
         courseId: props.match.params.id,
         isAdmin: state.user.isAdmin,
         normalizeData: state.assignments.normalizeData,
+        username: state.user.username,
     };
 };
 
 const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProps => {
     return {
         ...props,
-        onLoad: id => {
+        onLoadId: id => {
             dispatch(fetchAssignments(id));
         },
         submitSolution: assignment => {
@@ -33,15 +34,17 @@ const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProp
 
 type AssignmentsContainerProps = {
     normalizeData: NormalizeAssignmentsData[];
-    onLoad: (id: string) => void;
+    onLoadId: (id: any) => void;
+    username: any;
     courseId: string;
     isAdmin: boolean;
+    userProfile: string;
     submitSolution: (assignment: IAssignmentDocument) => void;
 };
 
 class AssignmentsContainer extends React.Component<AssignmentsContainerProps, any> {
     componentDidMount() {
-        this.props.onLoad(this.props.courseId);
+        this.props.onLoadId({ courseId: this.props.courseId, userId: this.props.username });
     }
 
     render() {

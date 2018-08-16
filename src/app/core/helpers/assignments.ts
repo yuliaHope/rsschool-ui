@@ -1,17 +1,24 @@
-import { IAssignmentDocument } from '../models';
+import { IAssignmentDocument, IEventDocument } from '../models';
 
 type INormalizeAssignments = {
     isEndAssignment: boolean;
-    assignment: IAssignmentDocument;
+    assignment: any;
 };
 
 export type NormalizeAssignmentsData = {
     assignments: INormalizeAssignments[];
 };
 
-export const getNormalizeAssignmentsData = (assignments: IAssignmentDocument[]): NormalizeAssignmentsData[] => {
+export const getNormalizeAssignmentsData = (
+    assignments: IAssignmentDocument[],
+    tasks: IEventDocument[],
+): NormalizeAssignmentsData[] => {
+    let k: number = 0;
     const sortedAssignments = assignments
         .reduce<INormalizeAssignments[]>((res, assignment) => {
+            const assignment2: any = { ...assignment, ...tasks[k] };
+            k++;
+            assignment = assignment2;
             if (assignment.deadlineDate < Date.now() && assignment.score === null) {
                 res.push({ assignment, isEndAssignment: true });
             } else {

@@ -18,6 +18,7 @@ interface IFetchCourseEventsAndStagesOkAction {
 interface IFetchAssignmentsOkAction {
     type: ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK;
     payload: {
+        tasks: IEventDocument[];
         assignments: IAssignmentDocument[];
     };
 }

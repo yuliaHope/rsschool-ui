@@ -7,7 +7,7 @@ type AssignmentResponse = {
 };
 
 // type AssignmentsPostResponse = IAssignmentDocument;
-
+/*
 const data = {
     assignments: [
         {
@@ -101,13 +101,24 @@ const data = {
             status: 'Assigned',
         },
     ],
-};
+};*/
 
-export function getAssignmentsByCourseId(courseId: string) {
-    return data;
-    return axios.get<AssignmentResponse>(`/api/course/${courseId}/assignments`);
+export function getAssignmentsByCourseId(courseId: string, userId: string) {
+    return axios.get<AssignmentResponse>(`/api/course/${courseId}/${userId}/assignments`);
 }
 
+export function getTasksByCourseId(courseId: string, userId: string) {
+    return axios.get<AssignmentResponse>(`/api/course/${courseId}/${userId}/tasks`);
+}
+
+export function getAssignmentsAndTasksByCourseId(courseId: string, userId: string) {
+    return Promise.all([getAssignmentsByCourseId(courseId, userId), getTasksByCourseId(courseId, userId)]).then(
+        ([assignments, tasks]) => ({
+            assignments: assignments.data.data,
+            tasks: tasks.data.data,
+        }),
+    );
+}
 export function submitSolutionApi(assignment: IAssignmentDocument) {
     return new Promise(res => {
         setTimeout(() => {
