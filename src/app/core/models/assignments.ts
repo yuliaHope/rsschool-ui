@@ -6,18 +6,21 @@ export enum AssignmentStatus {
 }
 
 export interface IAssignment {
-    taskId: string;
-    courseId: string;
-    studentId: string;
-    mentorId: string;
-    studentComment: string;
-    mentorComment: string;
-    score: number;
     assignmentRepo: string;
+    checkDate?: number;
+    completeDate?: number;
+    courseId: string;
     deadlineDate: number;
-    completeDate: number;
-    checkDate: number;
+    mentorComment: string;
+    mentorId: string;
+    score: number;
     status: AssignmentStatus;
+    studentComment: string;
+    studentId: string;
+    taskId: string;
+    title: string;
+    urlToDescription?: string;
+    whoChecks?: string;
 }
 
 export interface IAssignmentDocument extends IAssignment {

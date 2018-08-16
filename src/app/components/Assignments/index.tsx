@@ -1,20 +1,21 @@
 import * as React from 'react';
 import AssignmentItem from './AssignmentItem';
-import { NormalizeAssignmentsData } from 'core/helpers';
 import { IAssignmentDocument } from 'core/models';
 
 type AssignmentsProps = {
     courseId: string;
-    normalizeData: NormalizeAssignmentsData[];
+    assignments: any;
     submitSolution: (assignment: IAssignmentDocument) => void;
 };
 
 const Assignments = (props: AssignmentsProps) => {
-    const { normalizeData } = props;
+    const {
+        assignments: { assignments },
+    } = props;
     return (
         <div className="card-deck mb-3 justify-content-center">
-            {normalizeData[0]
-                ? normalizeData[0].assignments.map(assignment => {
+            {assignments[0]
+                ? assignments[0].assignments.map((assignment: any) => {
                       return (
                           <AssignmentItem
                               key={assignment.assignment._id}

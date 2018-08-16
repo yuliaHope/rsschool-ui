@@ -1,15 +1,15 @@
 import { ASSIGNMENT } from '../constants';
-import { getAssignmentsAndTasksByCourseId, submitSolutionApi } from '../api';
+import { getAssignmentsByCourseId, submitSolutionApi } from '../api';
 import { IAssignmentDocument } from '../models';
 
-export function fetchAssignments(data: any) {
+export function fetchAssignments(courseId: string) {
     return async (dispatch: any) => {
         dispatch({
             type: ASSIGNMENT.LOADING,
         });
 
         try {
-            const result = await getAssignmentsAndTasksByCourseId(data.courseId, data.userId);
+            const result = await getAssignmentsByCourseId(courseId);
             dispatch({
                 type: ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK,
                 payload: result,
