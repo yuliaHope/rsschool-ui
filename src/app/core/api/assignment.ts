@@ -9,7 +9,7 @@ type AssignmentResponse = {
 export function getAssignmentsByCourseId(courseId: string) {
     return axios
         .get<AssignmentResponse>(`/api/course/${courseId}/assignments`)
-        .then(assignments => ({ assignments: assignments.data.data }));
+        .then(assignments => assignments.data.data);
 }
 
 export function submitSolutionApi(assignment: IAssignmentDocument) {

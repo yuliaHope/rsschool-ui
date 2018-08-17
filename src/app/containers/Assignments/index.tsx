@@ -14,7 +14,7 @@ const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
         ...props,
         courseId: props.match.params.id,
         isAdmin: state.user.isAdmin,
-        assignments: state.assignments,
+        assignments: state.assignments.assignments,
     };
 };
 

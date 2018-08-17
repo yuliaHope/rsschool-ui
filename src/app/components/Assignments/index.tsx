@@ -9,13 +9,11 @@ type AssignmentsProps = {
 };
 
 const Assignments = (props: AssignmentsProps) => {
-    const {
-        assignments: { assignments },
-    } = props;
+    const { assignments } = props;
     return (
         <div className="card-deck mb-3">
-            {assignments[0]
-                ? assignments[0].assignments.map((assignment: any) => {
+            {assignments
+                ? assignments.map((assignment: any) => {
                       return (
                           <AssignmentItem
                               key={assignment.assignment._id}
