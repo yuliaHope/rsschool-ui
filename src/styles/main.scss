@@ -67,3 +67,70 @@ h4.badge-info {
 .badge-primary a {
     color: #fff;
 }
+
+/*------------------------------------*\
+   COMMON Styles Assingments
+\*------------------------------------*/
+
+.card-success {
+    width: 20vw;
+    margin: 50px auto;
+  }
+  
+  .card-success-title {
+    text-transform: uppercase;
+  }
+  
+  .card-success-body {
+    padding-bottom: 100px;
+  }
+  
+  .score-success {
+    float: right;
+  }
+
+  .card-empty {
+    width: 20vw;
+    margin: 50px auto;
+}
+
+.card-empty-title {
+    text-transform: uppercase;
+}
+
+.submit-btn {
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: white;
+}
+
+.card-danger {
+    width: 20vw;
+    margin: 50px auto;
+  }
+  
+  .card-danger-title {
+    text-transform: uppercase;
+  }
+  
+  .card-danger-body {
+    padding-bottom: 100px;
+  }
+
+  .card-warning {
+    width: 20vw;
+    margin: 50px auto;
+  }
+  
+  .card-warning-title {
+    text-transform: uppercase;
+  }
+  
+  .card-warning-body {
+    padding-bottom: 100px;
+  }
+  
+  .score-warning {
+    float: right;
+  }
