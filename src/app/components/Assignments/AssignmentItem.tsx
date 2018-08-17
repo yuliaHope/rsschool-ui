@@ -22,7 +22,7 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
     };
 
     render() {
-        const { status, score } = this.props.assignment;
+        const { status, title, urlToDescription, score } = this.props.assignment;
         const { isEndAssignment } = this.props;
         return (
             <Card
@@ -49,7 +49,7 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
                         <span className={cn('score')}>{score}%</span>
                     </CardHeader>
                 ) : null}
-                <AssignmentItemBody />
+                <AssignmentItemBody title={title} urlToDescription={urlToDescription} />
                 <AssignmentItemForm
                     onSubmit={this.handleSubmitSolution}
                     isEndAssingment={isEndAssignment}

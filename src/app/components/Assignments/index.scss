@@ -1,6 +1,11 @@
 @media (min-width: 576px) {
     .card {
-        min-width: 27%;
+        min-width: 40%;
+    }
+}
+@media (min-width: 1000px) {
+    .card {
+        min-width: 30%;
     }
 }
 .score{
