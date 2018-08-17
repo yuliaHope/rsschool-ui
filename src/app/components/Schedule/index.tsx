@@ -226,7 +226,7 @@ class Schedule extends React.PureComponent<ScheduleProps, ScheduleState> {
                 {isAdmin ? (
                     <Row className="text-right mb-4 mt-3">
                         <FormGroup className="col-md-12">
-                            <Button color="success" onClick={this.toggleModalEvent(EventType.Session)}>
+                            <Button color="success" onClick={this.toggleModalEvent(EventType.Lecture)}>
                                 <FontAwesomeIcon icon={faPlus} /> Add Session
                             </Button>{' '}
                             <Button color="success" onClick={this.toggleModalEvent(EventType.Task)}>
