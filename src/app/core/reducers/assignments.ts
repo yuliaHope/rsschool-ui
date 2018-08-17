@@ -1,9 +1,8 @@
 import { IScheduleAction } from '../util';
-import { IAssignmentDocument } from '../models';
 import { ASSIGNMENT } from '../constants';
 
 export type AssignmentsState = {
-    assignments: IAssignmentDocument[];
+    assignments: any;
     error: Error | undefined;
 };
 
@@ -24,12 +23,19 @@ export function assignmentsReducer(state = initialState, action: IScheduleAction
         }
         case ASSIGNMENT.SUBMIT_USER_SOLUTION_OK: {
             const result = action.payload;
-            const assignments = state.assignments.map(assignment => {
-                return assignment._id === result._id ? result : assignment;
-            });
+
             return {
                 ...state,
-                assignments,
+                assignments: [
+                    {
+                        assignments: state.assignments[0].assignments.map(
+                            (item: any) =>
+                                item.assignment._id === result._id
+                                    ? { assignment: result, isEndAssignment: item.isEndAssignment }
+                                    : item,
+                        ),
+                    },
+                ],
             };
         }
         default:
