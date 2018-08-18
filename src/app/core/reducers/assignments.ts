@@ -1,8 +1,14 @@
 import { IScheduleAction } from '../util';
 import { ASSIGNMENT } from '../constants';
+import { IAssignmentDocument } from '../models';
+
+export type INormalizeAssignment = {
+    isEndAssignment: boolean;
+    assignment: IAssignmentDocument;
+};
 
 export type AssignmentsState = {
-    assignments: any;
+    assignments: INormalizeAssignment[];
     error: Error | undefined;
     isLoading: boolean;
 };
@@ -33,9 +39,9 @@ export function assignmentsReducer(state = initialState, action: IScheduleAction
         case ASSIGNMENT.UPDATE_ASSIGNMENT_OK: {
             const assignmentId = action.payload._id;
             const assignments = state.assignments.map(
-                (assignmentItem: any) =>
+                (assignmentItem: INormalizeAssignment) =>
                     assignmentId === assignmentItem.assignment._id
-                        ? { ...assignmentItem, assignment: action.payload }
+                        ? { ...assignmentItem, assignment: { ...assignmentItem.assignment, ...action.payload } }
                         : assignmentItem,
             );
             return {

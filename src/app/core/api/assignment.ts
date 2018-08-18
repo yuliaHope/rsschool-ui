@@ -1,9 +1,9 @@
 import axios from 'axios';
-
+import { INormalizeAssignment } from '../reducers/assignments';
 import { IAssignmentDocument } from '../models';
 
 type AssignmentResponse = {
-    data: IAssignmentDocument[];
+    data: INormalizeAssignment[];
 };
 
 type AssignmentPatchResponse = {

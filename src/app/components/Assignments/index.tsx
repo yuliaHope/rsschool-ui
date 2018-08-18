@@ -1,11 +1,11 @@
 import * as React from 'react';
 import AssignmentItem from './AssignmentItem';
-import { IAssignmentDocument } from 'core/models';
+import { INormalizeAssignment } from 'core/reducers/assignments';
 
 type AssignmentsProps = {
     courseId: string;
-    assignments: any;
-    updateAssignment: (assignment: IAssignmentDocument) => void;
+    assignments: INormalizeAssignment[];
+    updateAssignment: (assignment: INormalizeAssignment) => void;
 };
 
 const Assignments = (props: AssignmentsProps) => {
@@ -13,12 +13,11 @@ const Assignments = (props: AssignmentsProps) => {
     return (
         <div className="card-deck mb-3">
             {assignments
-                ? assignments.map((assignment: any) => {
+                ? assignments.map((assignment: INormalizeAssignment) => {
                       return (
                           <AssignmentItem
                               key={assignment.assignment._id}
-                              assignment={assignment.assignment}
-                              isEndAssignment={assignment.isEndAssignment}
+                              assignment={assignment}
                               updateAssignment={props.updateAssignment}
                           />
                       );

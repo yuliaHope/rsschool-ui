@@ -1,34 +1,37 @@
 import * as React from 'react';
 import { Card, CardHeader } from 'reactstrap';
 import { classNames } from 'core/styles';
-import { IAssignmentDocument } from 'core/models';
 import './index.scss';
 
 import AssignmentItemBody from './AssignmentItemBody';
 import AssignmentItemForm, { AssignmentFormData } from './AssignmentItemForm';
+import { INormalizeAssignment } from 'core/reducers/assignments';
 
 const cn = classNames(require('./index.scss'));
 
 type AssignmentItemProps = {
-    assignment: IAssignmentDocument;
-    isEndAssignment: boolean;
-    updateAssignment: (assignment: IAssignmentDocument) => void;
+    assignment: INormalizeAssignment;
+    updateAssignment: (assignment: INormalizeAssignment) => void;
 };
 
 class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
     handleSubmitAssignment = ({ assignmentRepo, studentComment }: AssignmentFormData) => {
         const { assignment } = this.props;
         const data = {
-            completeDate: Date.now(),
-            assignmentRepo: assignmentRepo,
-            studentComment: studentComment,
+            ...assignment,
+            assignment: {
+                ...assignment.assignment,
+                completeDate: Date.now(),
+                assignmentRepo: assignmentRepo,
+                studentComment: studentComment,
+            },
         };
-        this.props.updateAssignment({ ...assignment, ...data });
+        this.props.updateAssignment(data);
     };
 
     render() {
-        const { status, title, urlToDescription, score, _id } = this.props.assignment;
-        const { isEndAssignment } = this.props;
+        const { status, title, urlToDescription, score, _id } = this.props.assignment.assignment;
+        const { isEndAssignment } = this.props.assignment;
         return (
             <Card
                 className={`bm-3 mb-4 flex-grow-0 flex-shrink-1 ${cn('card')} bg-secondary ${

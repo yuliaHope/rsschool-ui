@@ -1,6 +1,6 @@
 import { ASSIGNMENT } from '../constants';
 import { getAssignmentsByCourseId, submitAssignmentApi } from '../api';
-import { IAssignmentDocument } from '../models';
+import { INormalizeAssignment } from '../reducers/assignments';
 
 export function fetchAssignments(courseId: string) {
     return async (dispatch: any) => {
@@ -23,14 +23,14 @@ export function fetchAssignments(courseId: string) {
     };
 }
 
-export function updateAssignment(assignment: IAssignmentDocument) {
+export function updateAssignment(assignment: INormalizeAssignment) {
     return async (dispatch: any) => {
         dispatch({
             type: ASSIGNMENT.LOADING,
         });
 
         try {
-            const result = await submitAssignmentApi(assignment);
+            const result = await submitAssignmentApi(assignment.assignment);
             dispatch({
                 type: ASSIGNMENT.UPDATE_ASSIGNMENT_OK,
                 payload: result,

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Row, Col, Badge } from 'reactstrap';
 import Assignments from 'components/Assignments';
 import { fetchAssignments, updateAssignment } from 'core/actions';
-import { IAssignmentDocument } from 'core/models';
 import { classNames } from 'core/styles';
 import './index.scss';
+import { INormalizeAssignment } from 'core/reducers/assignments';
 
 const cn = classNames(require('./index.scss'));
 
@@ -25,23 +25,23 @@ const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProp
         onLoad: id => {
             dispatch(fetchAssignments(id));
         },
-        updateAssignment: (assignment: IAssignmentDocument) => {
+        updateAssignment: (assignment: INormalizeAssignment) => {
             dispatch(updateAssignment(assignment));
         },
     };
 };
 
 type AssignmentsContainerProps = {
-    onLoad: (id: any) => void;
+    onLoad: (id: string) => void;
     courseId: string;
     isAdmin: boolean;
     userProfile: string;
-    assignments: any;
+    assignments: INormalizeAssignment[];
     isLoading: boolean;
-    updateAssignment: (assignment: IAssignmentDocument) => void;
+    updateAssignment: (assignment: INormalizeAssignment) => void;
 };
 
-class AssignmentsContainer extends React.Component<AssignmentsContainerProps, any> {
+class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
     componentDidMount() {
         this.props.onLoad(this.props.courseId);
     }
