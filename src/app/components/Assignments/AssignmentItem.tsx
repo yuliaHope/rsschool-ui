@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardHeader } from 'reactstrap';
 import { classNames } from 'core/styles';
-import { IAssignmentDocument, AssignmentStatus } from 'core/models';
+import { IAssignmentDocument } from 'core/models';
 import './index.scss';
 
 import AssignmentItemBody from './AssignmentItemBody';
@@ -20,8 +20,6 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
         const { assignment } = this.props;
         const data = {
             completeDate: Date.now(),
-            score: Math.floor(0 + Math.random() * (100 + 1 - 0)),
-            status: AssignmentStatus.Checked,
             assignmentRepo: assignmentRepo,
             studentComment: studentComment,
         };
