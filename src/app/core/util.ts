@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { SCHEDULE } from './constants';
-import { IEventDocument, IStageDocument, IAssignment, AssignmentStatus } from './models';
+import { IEventDocument, IStageDocument } from './models';
 
 interface ILoadingAction {
     type: SCHEDULE.LOADING;
@@ -64,28 +64,3 @@ export interface Action<T> extends AnyAction {
     type: string;
     payload?: T;
 }
-const TIME_PAUSE = 1500;
-export const pause = async () => {
-    return new Promise(resolve => {
-        setTimeout(resolve, TIME_PAUSE);
-    });
-};
-export const setSolutionStatus = (id: string, arr: Array<IAssignment>) => {
-    const newArr = [...arr];
-    newArr.forEach(elem => {
-        if (elem.taskId === id) {
-            elem.status = AssignmentStatus.ReadyForReview;
-        }
-    });
-    return newArr;
-};
-export const setSolutionMark = (id: string, arr: Array<IAssignment>) => {
-    const newArr = [...arr];
-    newArr.forEach(elem => {
-        if (elem.taskId === id) {
-            elem.status = AssignmentStatus.Checked;
-            elem.score = Math.floor(Math.random() * 101);
-        }
-    });
-    return newArr;
-};

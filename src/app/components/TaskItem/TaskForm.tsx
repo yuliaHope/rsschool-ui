@@ -4,7 +4,7 @@ import { IAssignmentModel } from 'core/models';
 type Props = {
     status: string;
     assignment: IAssignmentModel;
-    fetchTaskSolution: (assignment: IAssignmentModel) => void;
+    fetchAssignmentSolution: (assignment: IAssignmentModel) => void;
 };
 
 class TaskForm extends React.Component<Props> {
@@ -16,10 +16,10 @@ class TaskForm extends React.Component<Props> {
         this.studentComment = React.createRef();
     }
     SendStudentTask(assignment: IAssignmentModel) {
-        const { fetchTaskSolution } = this.props;
+        const { fetchAssignmentSolution } = this.props;
         const studentRepoValue: string = this.studentRepo.current!.value.replace(/\s/g, '');
         if (studentRepoValue) {
-            fetchTaskSolution(assignment);
+            fetchAssignmentSolution(assignment);
         } else {
             alert('wrong repo');
             this.studentRepo.current!.value = '';
