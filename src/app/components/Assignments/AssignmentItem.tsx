@@ -61,7 +61,7 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
                     isEndAssingment={isEndAssignment}
                     status={status}
                     onSubmit={this.handleSubmitAssignment}
-                    form={_id.toString()}
+                    form={'form-' + _id.toString()}
                 />
             </Card>
         );

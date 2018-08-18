@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { InjectedFormProps, reduxForm, Field } from 'redux-form';
 import { Button, FormGroup, CardFooter, Form } from 'reactstrap';
 import ReduxFormInput from 'components/ReduxFormInput';
@@ -64,9 +63,4 @@ class AssignmentItemForm extends React.PureComponent<
 export default reduxForm<AssignmentFormData, AssignmentItemFormProps>({
     form: 'assignmentForm',
     enableReinitialize: true,
-})(
-    connect(
-        null,
-        null,
-    )(AssignmentItemForm),
-);
+})(AssignmentItemForm);

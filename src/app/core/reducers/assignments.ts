@@ -33,7 +33,10 @@ export function assignmentsReducer(state = initialState, action: IScheduleAction
         case ASSIGNMENT.UPDATE_ASSIGNMENT_OK: {
             const assignmentId = action.payload._id;
             const assignments = state.assignments.map(
-                (assignment: any) => (assignmentId === assignment._id ? action.payload : assignment),
+                (assignmentItem: any) =>
+                    assignmentId === assignmentItem.assignment._id
+                        ? { ...assignmentItem, assignment: action.payload }
+                        : assignmentItem,
             );
             return {
                 ...state,
