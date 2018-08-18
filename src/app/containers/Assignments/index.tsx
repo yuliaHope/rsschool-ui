@@ -47,36 +47,38 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
     }
 
     render() {
-        const { courseId, assignments, isLoading } = this.props;
+        const { courseId, assignments, isLoading, isAdmin } = this.props;
         return (
             <React.Fragment>
-                <div className="tasks">
-                    <h2>TASKS</h2>
-                    <Row>
-                        <Col xs="6">
-                            <p>
-                                Your github private repository
-                                <Badge color="dark" href="#" className={cn('badge')}>
-                                    {' '}
-                                    here
-                                </Badge>
-                            </p>
-                        </Col>
-                        <Col xs="6" className="text-right">
-                            <p>You are in the TOP 50 students!</p>
-                            <p>Full Score: 200</p>
-                        </Col>
-                    </Row>
-                    {isLoading ? (
-                        <h3>Loading...</h3>
-                    ) : (
-                        <Assignments
-                            courseId={courseId}
-                            assignments={assignments}
-                            updateAssignment={this.props.updateAssignment}
-                        />
-                    )}
-                </div>
+                {!isAdmin && (
+                    <div className="tasks">
+                        <h2>TASKS</h2>
+                        <Row>
+                            <Col xs="6">
+                                <p>
+                                    Your github private repository
+                                    <Badge color="dark" href="#" className={cn('badge')}>
+                                        {' '}
+                                        here
+                                    </Badge>
+                                </p>
+                            </Col>
+                            <Col xs="6" className="text-right">
+                                <p>You are in the TOP 50 students!</p>
+                                <p>Full Score: 200</p>
+                            </Col>
+                        </Row>
+                        {isLoading ? (
+                            <h3>Loading...</h3>
+                        ) : (
+                            <Assignments
+                                courseId={courseId}
+                                assignments={assignments}
+                                updateAssignment={this.props.updateAssignment}
+                            />
+                        )}
+                    </div>
+                )}
             </React.Fragment>
         );
     }
