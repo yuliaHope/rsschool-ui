@@ -4,38 +4,41 @@ import { ASSIGNMENT } from '../constants';
 export type AssignmentsState = {
     assignments: any;
     error: Error | undefined;
+    isLoading: boolean;
 };
 
 const initialState: AssignmentsState = {
     assignments: [],
     error: undefined,
+    isLoading: false,
 };
 
 export function assignmentsReducer(state = initialState, action: IScheduleAction): AssignmentsState {
     switch (action.type) {
-        case ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK: {
+        case ASSIGNMENT.LOADING: {
+            return {
+                ...state,
+                isLoading: true,
+            };
+        }
+        case ASSIGNMENT.FETCH_COURSE_USER_ASSIGNMENTS_OK: {
             const { assignments } = action.payload;
             return {
                 ...state,
                 error: undefined,
                 assignments,
+                isLoading: false,
             };
         }
-        case ASSIGNMENT.SUBMIT_USER_SOLUTION_OK: {
-            const result = action.payload;
-
+        case ASSIGNMENT.UPDATE_ASSIGNMENT_OK: {
+            const assignmentId = action.payload._id;
+            const assignments = state.assignments.map(
+                (assignment: any) => (assignmentId === assignment._id ? action.payload : assignment),
+            );
             return {
                 ...state,
-                assignments: [
-                    {
-                        assignments: state.assignments[0].assignments.map(
-                            (item: any) =>
-                                item.assignment._id === result._id
-                                    ? { assignment: result, isEndAssignment: item.isEndAssignment }
-                                    : item,
-                        ),
-                    },
-                ],
+                assignments: assignments,
+                isLoading: false,
             };
         }
         default:

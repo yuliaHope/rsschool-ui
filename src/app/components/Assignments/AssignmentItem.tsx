@@ -1,28 +1,35 @@
 import * as React from 'react';
 import { Card, CardHeader } from 'reactstrap';
 import { classNames } from 'core/styles';
-import { IAssignmentDocument } from 'core/models';
+import { IAssignmentDocument, AssignmentStatus } from 'core/models';
 import './index.scss';
 
 import AssignmentItemBody from './AssignmentItemBody';
-import AssignmentItemForm from './AssignmentItemForm';
+import AssignmentItemForm, { AssignmentFormData } from './AssignmentItemForm';
 
 const cn = classNames(require('./index.scss'));
 
 type AssignmentItemProps = {
     assignment: IAssignmentDocument;
     isEndAssignment: boolean;
-    submitSolution: (assignment: IAssignmentDocument) => void;
+    updateAssignment: (assignment: IAssignmentDocument) => void;
 };
 
 class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
-    handleSubmitSolution = () => {
-        const { submitSolution, assignment } = this.props;
-        submitSolution(assignment);
+    handleSubmitAssignment = ({ assignmentRepo, studentComment }: AssignmentFormData) => {
+        const { assignment } = this.props;
+        const data = {
+            completeDate: Date.now(),
+            score: Math.floor(0 + Math.random() * (100 + 1 - 0)),
+            status: AssignmentStatus.Checked,
+            assignmentRepo: assignmentRepo,
+            studentComment: studentComment,
+        };
+        this.props.updateAssignment({ ...assignment, ...data });
     };
 
     render() {
-        const { status, title, urlToDescription, score } = this.props.assignment;
+        const { status, title, urlToDescription, score, _id } = this.props.assignment;
         const { isEndAssignment } = this.props;
         return (
             <Card
@@ -51,9 +58,10 @@ class AssignmentItem extends React.PureComponent<AssignmentItemProps> {
                 ) : null}
                 <AssignmentItemBody title={title} urlToDescription={urlToDescription} />
                 <AssignmentItemForm
-                    onSubmit={this.handleSubmitSolution}
                     isEndAssingment={isEndAssignment}
                     status={status}
+                    onSubmit={this.handleSubmitAssignment}
+                    form={_id.toString()}
                 />
             </Card>
         );

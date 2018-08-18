@@ -5,7 +5,7 @@ import { IAssignmentDocument } from 'core/models';
 type AssignmentsProps = {
     courseId: string;
     assignments: any;
-    submitSolution: (assignment: IAssignmentDocument) => void;
+    updateAssignment: (assignment: IAssignmentDocument) => void;
 };
 
 const Assignments = (props: AssignmentsProps) => {
@@ -19,7 +19,7 @@ const Assignments = (props: AssignmentsProps) => {
                               key={assignment.assignment._id}
                               assignment={assignment.assignment}
                               isEndAssignment={assignment.isEndAssignment}
-                              submitSolution={props.submitSolution}
+                              updateAssignment={props.updateAssignment}
                           />
                       );
                   })

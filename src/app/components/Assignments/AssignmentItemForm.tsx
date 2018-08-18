@@ -1,47 +1,53 @@
 import * as React from 'react';
-import { Button, Form, FormGroup, Label, Input, CardFooter } from 'reactstrap';
+import { connect } from 'react-redux';
+import { InjectedFormProps, reduxForm, Field } from 'redux-form';
+import { Button, FormGroup, CardFooter, Form } from 'reactstrap';
+import ReduxFormInput from 'components/ReduxFormInput';
 import { classNames } from 'core/styles';
 
 const cn = classNames(require('./index.scss'));
-
 type AssignmentItemFormProps = {
     isEndAssingment: boolean;
     status: string;
-    onSubmit: () => void;
+};
+export type AssignmentFormData = {
+    assignmentRepo: string;
+    studentComment: string;
 };
 
-class AssignmentItemForm extends React.PureComponent<AssignmentItemFormProps> {
-    onSubmitForm = (event: any) => {
-        event.preventDefault();
-        this.props.onSubmit();
-    };
-
+class AssignmentItemForm extends React.PureComponent<
+    AssignmentItemFormProps & InjectedFormProps<AssignmentFormData, AssignmentItemFormProps>
+> {
     render() {
-        const { status, isEndAssingment } = this.props;
+        const { status, isEndAssingment, handleSubmit } = this.props;
+
         return (
             status === 'Assigned' &&
             !isEndAssingment && (
                 <CardFooter className={cn('card-footer')}>
                     <small className="text-muted">
-                        <Form onSubmit={this.onSubmitForm}>
+                        <Form onSubmit={handleSubmit}>
                             <FormGroup>
-                                <Label for="exampleInputEmail1">Choose repo</Label>
-                                <Input
-                                    type="text"
-                                    bsSize="sm"
-                                    id="exampleInputEmail1"
-                                    aria-describedby="emailHelp"
+                                <Field
+                                    name="assignmentRepo"
+                                    label="Choose repo"
                                     placeholder="Enter link"
+                                    component={ReduxFormInput}
+                                    required={true}
+                                    type="text"
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="exampleInputEmail9">Comments</Label>
-                                <Input
-                                    type="textarea"
-                                    rows={3}
-                                    bsSize="sm"
-                                    id="exampleInputEmail9"
+                                <Field
+                                    name="studentComment"
+                                    label="Comments"
                                     placeholder="Write comments here"
+                                    component={ReduxFormInput}
+                                    required={true}
+                                    type="textarea"
+                                    rows="3"
+                                    style="123"
+                                    className="form-control-sm"
                                 />
                             </FormGroup>
                             <Button type="submit" color="primary" size="sm">
@@ -55,4 +61,12 @@ class AssignmentItemForm extends React.PureComponent<AssignmentItemFormProps> {
     }
 }
 
-export default AssignmentItemForm;
+export default reduxForm<AssignmentFormData, AssignmentItemFormProps>({
+    form: 'assignmentForm',
+    enableReinitialize: true,
+})(
+    connect(
+        null,
+        null,
+    )(AssignmentItemForm),
+);

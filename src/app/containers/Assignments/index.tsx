@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Badge } from 'reactstrap';
 import Assignments from 'components/Assignments';
-import { fetchAssignments, submitSolution } from 'core/actions';
+import { fetchAssignments, updateAssignment } from 'core/actions';
 import { IAssignmentDocument } from 'core/models';
 import { classNames } from 'core/styles';
 import './index.scss';
@@ -15,6 +15,7 @@ const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
         courseId: props.match.params.id,
         isAdmin: state.user.isAdmin,
         assignments: state.assignments.assignments,
+        isLoading: state.assignments.isLoading,
     };
 };
 
@@ -24,8 +25,8 @@ const mapDispatchToProps = (dispatch: any, props: any): AssignmentsContainerProp
         onLoad: id => {
             dispatch(fetchAssignments(id));
         },
-        submitSolution: assignment => {
-            dispatch(submitSolution(assignment));
+        updateAssignment: (assignment: IAssignmentDocument) => {
+            dispatch(updateAssignment(assignment));
         },
     };
 };
@@ -36,7 +37,8 @@ type AssignmentsContainerProps = {
     isAdmin: boolean;
     userProfile: string;
     assignments: any;
-    submitSolution: (assignment: IAssignmentDocument) => void;
+    isLoading: boolean;
+    updateAssignment: (assignment: IAssignmentDocument) => void;
 };
 
 class AssignmentsContainer extends React.Component<AssignmentsContainerProps, any> {
@@ -45,7 +47,7 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
     }
 
     render() {
-        const { courseId, assignments } = this.props;
+        const { courseId, assignments, isLoading } = this.props;
         return (
             <React.Fragment>
                 <div className="tasks">
@@ -65,11 +67,15 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps, an
                             <p>Full Score: 200</p>
                         </Col>
                     </Row>
-                    <Assignments
-                        courseId={courseId}
-                        assignments={assignments}
-                        submitSolution={this.props.submitSolution}
-                    />
+                    {isLoading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <Assignments
+                            courseId={courseId}
+                            assignments={assignments}
+                            updateAssignment={this.props.updateAssignment}
+                        />
+                    )}
                 </div>
             </React.Fragment>
         );

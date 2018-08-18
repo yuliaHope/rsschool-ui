@@ -4,7 +4,7 @@ import { SCHEDULE, ASSIGNMENT } from './constants';
 import { IEventDocument, IStageDocument, IAssignmentDocument } from './models';
 
 interface ILoadingAction {
-    type: SCHEDULE.LOADING;
+    type: SCHEDULE.LOADING | ASSIGNMENT.LOADING;
 }
 
 interface IFetchCourseEventsAndStagesOkAction {
@@ -16,15 +16,14 @@ interface IFetchCourseEventsAndStagesOkAction {
 }
 
 interface IFetchAssignmentsOkAction {
-    type: ASSIGNMENT.FETCH_USER_ASSIGNMENTS_OK;
+    type: ASSIGNMENT.FETCH_COURSE_USER_ASSIGNMENTS_OK;
     payload: {
-        tasks: IEventDocument[];
         assignments: IAssignmentDocument[];
     };
 }
 
-interface ISubmitUserSolutionOkAction {
-    type: ASSIGNMENT.SUBMIT_USER_SOLUTION_OK;
+interface IUpdateAssignmentOkAction {
+    type: ASSIGNMENT.UPDATE_ASSIGNMENT_OK;
     payload: IAssignmentDocument;
 }
 
@@ -68,7 +67,7 @@ export type IScheduleAction =
     | IFailAction
     | IFetchCourseEventsAndStagesOkAction
     | IFetchAssignmentsOkAction
-    | ISubmitUserSolutionOkAction
+    | IUpdateAssignmentOkAction
     | IAddCourseStageOkAction
     | IUpdateCourseStageOkAction
     | IDeleteCourseStageOkAction
