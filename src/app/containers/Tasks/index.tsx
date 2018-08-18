@@ -41,6 +41,16 @@ class Tasks extends React.Component<Props> {
     componentDidMount() {
         this.props.fetchAssignmentsData(this.props.courseId);
     }
+    getFullScore(): number {
+        const { assignments } = this.props;
+        let score = 0;
+        if (assignments && assignments.length !== 0) {
+            assignments.map(elem => {
+                score += elem.score;
+            });
+        }
+        return score;
+    }
     render() {
         const { assignments, error, fetchAssignmentSolution, courseId } = this.props;
         return (
@@ -57,7 +67,7 @@ class Tasks extends React.Component<Props> {
                     </div>
                     <div className="col-6 text-right">
                         <p>You are in the TOP 50 students!</p>
-                        <p>Full Score: 200</p>
+                        <p>Full Score:{this.getFullScore()}</p>
                     </div>
                 </div>
                 <div className="card-deck mb-3">
