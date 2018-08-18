@@ -36,8 +36,8 @@ export function fetchSolution(assignment: IAssignmentModel) {
             type: SEND_USER_SOLUTION,
         });
         try {
-            const result = await patchAssignments(assignment);
-            // when i write backEnd Api, i will remove this action
+            await patchAssignments(assignment);
+            const result = await getAssignments(assignment.courseId);
             dispatch({
                 type: SET_MARK_SOLUTION,
                 payload: { data: result, error: undefined },

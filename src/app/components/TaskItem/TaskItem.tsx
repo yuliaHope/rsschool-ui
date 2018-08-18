@@ -23,7 +23,7 @@ export const TaskItem = ({ assignment, fetchAssignmentSolution }: Props) => {
                 <TaskForm
                     status={assignment.status}
                     assignment={assignment}
-                    fetchTaskSolution={fetchAssignmentSolution}
+                    fetchAssignmentSolution={fetchAssignmentSolution}
                 />
             </div>
         </div>
