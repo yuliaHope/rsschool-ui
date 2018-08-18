@@ -37,6 +37,7 @@ class AssignmentItemForm extends React.PureComponent<
                                     type="text"
                                     validate={[requiredFieldError, urlFieldError]}
                                     warn={requiredFieldSuccess}
+                                    className="form-control-sm"
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -47,9 +48,7 @@ class AssignmentItemForm extends React.PureComponent<
                                     component={ReduxFormInput}
                                     required={true}
                                     type="textarea"
-                                    rows="3"
-                                    style="123"
-                                    className="form-control-sm"
+                                    className={`${cn('studentComment')} form-control-sm`}
                                 />
                             </FormGroup>
                             <Button type="submit" color="primary" size="sm">
