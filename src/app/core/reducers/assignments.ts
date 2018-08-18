@@ -50,7 +50,6 @@ export function assignmentsReducer(state = initialState, action: Action<any>): A
                 solutionError: undefined,
             };
         }
-        // when i write backEnd Api, i will remove this case
         case SET_MARK_SOLUTION: {
             return {
                 assignments: action.payload.data,
