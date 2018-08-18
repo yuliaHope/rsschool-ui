@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InjectedFormProps, reduxForm, Field } from 'redux-form';
 import { Button, FormGroup, CardFooter, Form } from 'reactstrap';
+import { requiredFieldError, requiredFieldSuccess, urlFieldError } from 'core/validation';
 import ReduxFormInput from 'components/ReduxFormInput';
 import { classNames } from 'core/styles';
 
@@ -34,6 +35,8 @@ class AssignmentItemForm extends React.PureComponent<
                                     component={ReduxFormInput}
                                     required={true}
                                     type="text"
+                                    validate={[requiredFieldError, urlFieldError]}
+                                    warn={requiredFieldSuccess}
                                 />
                             </FormGroup>
                             <FormGroup>
