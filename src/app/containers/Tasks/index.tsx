@@ -2,45 +2,47 @@ import * as React from 'react';
 import { TaskItem } from 'components/TaskItem/TaskItem';
 import { connect } from 'react-redux';
 import { RootState } from 'core/reducers';
-import { fetchTasks, fetchSolution } from 'core/actions';
-import { IAssignments } from 'core/models';
+import { fetchAssignments, fetchSolution } from 'core/actions';
+import { IAssignmentModel } from 'core/models';
 type Props = {
-    tasks?: Array<IAssignments>;
+    courseId: string;
+    assignments?: Array<IAssignmentModel>;
     loading: boolean;
     error: any;
     solutionError: any;
-    fetchTasksData: (courseId: string) => void;
-    fetchTaskSolution: (taskId: string) => void;
+    fetchAssignmentsData: (courseId: string) => void;
+    fetchAssignmentSolution: (assignment: IAssignmentModel) => void;
 };
 
 const mapStateToProps = (state: RootState, props: any): Props => {
     return {
         ...props,
-        tasks: state.tasks.tasks,
-        loading: state.tasks.loading,
-        error: state.tasks.error,
-        solutionError: state.tasks.solutionError,
+        courseId: props.match.params.id,
+        assignments: state.assignments.assignments,
+        loading: state.assignments.loading,
+        error: state.assignments.error,
+        solutionError: state.assignments.solutionError,
     };
 };
 
 const mapDispatchToProps = (dispatch: any, props: any): Props => {
     return {
         ...props,
-        fetchTasksData: (courseId: string) => {
-            dispatch(fetchTasks(courseId));
+        fetchAssignmentsData: (courseId: string) => {
+            dispatch(fetchAssignments(courseId));
         },
-        fetchTaskSolution: (taskId: string) => {
-            dispatch(fetchSolution(taskId, 'asdas'));
+        fetchAssignmentSolution: (assignment: IAssignmentModel) => {
+            dispatch(fetchSolution(assignment));
         },
     };
 };
 
 class Tasks extends React.Component<Props> {
     componentDidMount() {
-        this.props.fetchTasksData('asdasd');
+        this.props.fetchAssignmentsData(this.props.courseId);
     }
     render() {
-        const { tasks, error, fetchTaskSolution } = this.props;
+        const { assignments, error, fetchAssignmentSolution, courseId } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
@@ -59,9 +61,14 @@ class Tasks extends React.Component<Props> {
                     </div>
                 </div>
                 <div className="card-deck mb-3">
-                    {tasks ? (
-                        tasks.map(elem => (
-                            <TaskItem task={elem} key={elem.taskId} fetchTaskSolution={fetchTaskSolution} />
+                    {assignments ? (
+                        assignments.map(elem => (
+                            <TaskItem
+                                assignment={elem}
+                                key={elem.taskId}
+                                fetchAssignmentSolution={fetchAssignmentSolution}
+                                courseId={courseId}
+                            />
                         ))
                     ) : (
                         <div>Loading</div>
