@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { IAssignmentModel } from 'core/models';
 
 type Props = {
     status: string;
-    id: string;
-    fetchTaskSolution: (taskId: string) => void;
+    assignment: IAssignmentModel;
+    fetchTaskSolution: (assignment: IAssignmentModel) => void;
 };
 
 class TaskForm extends React.Component<Props> {
@@ -14,11 +15,11 @@ class TaskForm extends React.Component<Props> {
         this.studentRepo = React.createRef();
         this.studentComment = React.createRef();
     }
-    SendStudentTask(id: string) {
+    SendStudentTask(assignment: IAssignmentModel) {
         const { fetchTaskSolution } = this.props;
         const studentRepoValue: string = this.studentRepo.current!.value.replace(/\s/g, '');
         if (studentRepoValue) {
-            fetchTaskSolution(id);
+            fetchTaskSolution(assignment);
         } else {
             alert('wrong repo');
             this.studentRepo.current!.value = '';
@@ -28,7 +29,7 @@ class TaskForm extends React.Component<Props> {
         const { status } = this.props;
         // i will rewrite this case when i write  backEnd
         if (status !== 'MissedDeadline' && status !== 'Checked' && status !== 'ReadyForReview') {
-            const { id } = this.props;
+            const { assignment } = this.props;
             return (
                 <small className="text-muted">
                     <form>
@@ -54,7 +55,7 @@ class TaskForm extends React.Component<Props> {
                             type="button"
                             className="btn btn-primary btn-sm"
                             onClick={() => {
-                                this.SendStudentTask(id);
+                                this.SendStudentTask(assignment);
                             }}
                         >
                             Submit

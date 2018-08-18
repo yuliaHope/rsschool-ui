@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { SCHEDULE } from './constants';
-import { IEventDocument, IStageDocument, IAssignments } from './models';
+import { IEventDocument, IStageDocument, IAssignment, AssignmentStatus } from './models';
 
 interface ILoadingAction {
     type: SCHEDULE.LOADING;
@@ -70,20 +70,20 @@ export const pause = async () => {
         setTimeout(resolve, TIME_PAUSE);
     });
 };
-export const setSolutionStatus = (id: string, arr: Array<IAssignments>) => {
+export const setSolutionStatus = (id: string, arr: Array<IAssignment>) => {
     const newArr = [...arr];
     newArr.forEach(elem => {
         if (elem.taskId === id) {
-            elem.status = 'ReadyForReview';
+            elem.status = AssignmentStatus.ReadyForReview;
         }
     });
     return newArr;
 };
-export const setSolutionMark = (id: string, arr: Array<IAssignments>) => {
+export const setSolutionMark = (id: string, arr: Array<IAssignment>) => {
     const newArr = [...arr];
     newArr.forEach(elem => {
         if (elem.taskId === id) {
-            elem.status = 'Checked';
+            elem.status = AssignmentStatus.Checked;
             elem.score = Math.floor(Math.random() * 101);
         }
     });
