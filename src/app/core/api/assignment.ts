@@ -14,6 +14,6 @@ export function getAssignmentsById(courseId: string, studentId: string) {
 export async function submitSolutionApi(assignment: IAssignment) {
     const { courseId, taskId, studentId } = assignment;
     return axios
-        .post<AssignmentsPostResponse>(`/api/course/${courseId}/assignment/${studentId}/${taskId}`, assignment)
+        .patch<AssignmentsPostResponse>(`/api/course/${courseId}/assignment/${studentId}/${taskId}`, assignment)
         .then(response => response.data);
 }
