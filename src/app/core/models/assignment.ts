@@ -33,7 +33,6 @@ export interface IAssignment {
     completeDate: number;
     checkDate: number;
     status: AssignmentStatus;
-    [key: number]: any; // Delete or change
 }
 
 export interface IAssignmentDocument extends IAssignment {

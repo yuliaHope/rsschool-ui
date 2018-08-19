@@ -4,6 +4,7 @@ type Props = {
     submit: any;
     taskId: number;
     studentId: string;
+    courseId: string;
 };
 
 export default class FooterForm extends React.Component<Props, any> {
@@ -16,10 +17,11 @@ export default class FooterForm extends React.Component<Props, any> {
     }
 
     handleSubmit = (event: any) => {
-        const { submit, taskId, studentId } = this.props;
+        const { submit, taskId, studentId, courseId } = this.props;
         const { assignmentRepo, studentComment } = this.state;
         event.preventDefault();
         submit({
+            courseId,
             taskId,
             studentId,
             assignmentRepo,

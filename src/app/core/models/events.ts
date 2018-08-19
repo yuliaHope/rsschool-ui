@@ -1,5 +1,5 @@
 export enum EventType {
-    Session = 'session',
+    Lecture = 'lecture',
     Task = 'task',
 }
 

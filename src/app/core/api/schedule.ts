@@ -49,14 +49,14 @@ export function deleteStageApi(id: string) {
     return axios.delete(`/api/stage/${id}`);
 }
 
-export function addEventApi(event: IEvent) {
-    return axios.post<EventPostResponse>(`/api/event`, event).then(response => response.data);
+export function addEventApi(event: IEvent, route: string) {
+    return axios.post<EventPostResponse>(`/api/${route}`, event).then(response => response.data);
 }
 
-export function updateEventApi(event: IEventDocument) {
-    return axios.patch<EventPatchResponse>(`/api/event`, event).then(response => response.data.data);
+export function updateEventApi(event: IEventDocument, route: string) {
+    return axios.patch<EventPatchResponse>(`/api/${route}`, event).then(response => response.data.data);
 }
 
-export function deleteEventApi(id: string) {
-    return axios.delete(`/api/event/${id}`);
+export function deleteEventApi(id: string, route: string) {
+    return axios.delete(`/api/${route}/${id}`);
 }

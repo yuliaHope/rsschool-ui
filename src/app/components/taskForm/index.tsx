@@ -2,7 +2,7 @@ import * as React from 'react';
 import FooterForm from './FooterForm';
 import HeaderForm from './HeaderForm';
 import { classNames } from 'core/styles';
-import { AssignmentTitle, AssignmentStyle } from 'core/models';
+import { AssignmentStatus, AssignmentTitle, AssignmentStyle } from 'core/models';
 
 const cn = classNames(require('./index.scss'));
 
@@ -13,6 +13,7 @@ type Props = {
     taskId: number;
     studentId: string;
     score: number;
+    courseId: string;
     submit: any;
 };
 
@@ -20,13 +21,14 @@ declare type StyleKey = keyof typeof AssignmentStyle;
 declare type TitleKey = keyof typeof AssignmentTitle;
 
 const TaskForm = (props: Props) => {
-    const { taskId, studentId, title, urlToDescription, submit, status, score } = props;
+    const { taskId, studentId, title, urlToDescription, submit, status, score, courseId } = props;
+    const { Assigned, Checked } = AssignmentStatus;
 
     let formTitle;
     let formStyle;
-    const isSubmit = status !== 'Assigned';
+    const isSubmit = status !== Assigned;
 
-    if (status === 'Checked') {
+    if (status === Checked) {
         formTitle = (
             <span>
                 {AssignmentTitle[status]}
@@ -44,7 +46,9 @@ const TaskForm = (props: Props) => {
             <div className={cn('card-header', `bg-${formStyle}`)}>{formTitle}</div>
             <HeaderForm title={title} urlToDescription={urlToDescription} />
             <div className={cn('card-footer')}>
-                {isSubmit ? null : <FooterForm submit={submit} taskId={taskId} studentId={studentId} />}
+                {isSubmit ? null : (
+                    <FooterForm submit={submit} taskId={taskId} studentId={studentId} courseId={courseId} />
+                )}
             </div>
         </div>
     );

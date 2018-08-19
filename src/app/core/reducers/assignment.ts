@@ -19,13 +19,29 @@ export function assignmentReducer(state = initialState, action: Action<any>): As
         case ASSIGNMENT.FETCH_ASSIGNMENTS_OK: {
             return {
                 ...state,
-                assignments: action.payload,
+                assignments: action.payload.data.data,
+                isLoading: false,
+            };
+        }
+        case ASSIGNMENT.SUBMIT_SOLUTION_OK: {
+            const { assignments } = state;
+            return {
+                ...state,
+                assignments: assignments.map((item: any) => {
+                    if (item.taskId === action.payload.taskId) {
+                        return {
+                            ...item,
+                            ...action.payload,
+                        };
+                    }
+                }),
                 isLoading: false,
             };
         }
         case ASSIGNMENT.LOADING: {
             return {
                 ...state,
+                isLoading: true,
             };
         }
         case ASSIGNMENT.FAIL: {

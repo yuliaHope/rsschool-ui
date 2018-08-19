@@ -59,19 +59,23 @@ class Tasks extends React.Component<AssigmentContainerProps> {
     generateTasks() {
         const { assignments } = this.props.assignments;
         const { submitTask } = this.props;
-
-        return assignments.map((item: any, i: number) => {
-            const props = {
-                title: 'Exchange money',
-                urlToDescription: 'htppfsdfsd',
-                taskId: item.taskId,
-                studentId: item.studentId,
-                status: item.status,
-                score: item.score,
-                submit: submitTask,
-            };
-            return <TaskForm key={i} {...props} />;
-        });
+        if (assignments.length > 0) {
+            return assignments.map((item: any, i: number) => {
+                const props = {
+                    title: item.title,
+                    urlToDescription: item.urlToDescription,
+                    taskId: item.taskId,
+                    studentId: item.studentId,
+                    status: item.status,
+                    score: item.score,
+                    courseId: item.courseId,
+                    submit: submitTask,
+                };
+                return <TaskForm key={i} {...props} />;
+            });
+        } else {
+            return 'There is no one task';
+        }
     }
 
     render() {
