@@ -46,11 +46,20 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
         this.props.onLoad(this.props.courseId);
     }
 
+    getFullScore(): number {
+        const { assignments } = this.props;
+        let score = 0;
+        assignments.forEach(assignmentItem => {
+            score += assignmentItem.assignment.score;
+        });
+        return score;
+    }
+
     render() {
         const { courseId, assignments, isLoading, isAdmin } = this.props;
         return (
             <React.Fragment>
-                {!isAdmin && (
+                {isAdmin && (
                     <div className="tasks">
                         <h2>TASKS</h2>
                         <Row>
@@ -65,7 +74,7 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
                             </Col>
                             <Col xs="6" className="text-right">
                                 <p>You are in the TOP 50 students!</p>
-                                <p>Full Score: 200</p>
+                                <p>Full Score: {this.getFullScore()}</p>
                             </Col>
                         </Row>
                         {isLoading ? (
