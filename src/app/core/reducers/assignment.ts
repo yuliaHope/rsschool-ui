@@ -34,6 +34,7 @@ export function assignmentReducer(state = initialState, action: Action<any>): As
                             ...action.payload,
                         };
                     }
+                    return item;
                 }),
                 isLoading: false,
             };

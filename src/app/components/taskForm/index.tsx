@@ -47,7 +47,7 @@ const TaskForm = (props: Props) => {
             <HeaderForm title={title} urlToDescription={urlToDescription} />
             <div className={cn('card-footer')}>
                 {isSubmit ? null : (
-                    <FooterForm submit={submit} taskId={taskId} studentId={studentId} courseId={courseId} />
+                    <FooterForm submitApi={submit} taskId={taskId} studentId={studentId} courseId={courseId} />
                 )}
             </div>
         </div>

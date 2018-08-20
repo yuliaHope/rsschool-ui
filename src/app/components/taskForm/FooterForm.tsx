@@ -1,30 +1,31 @@
 import * as React from 'react';
-import { Field } from 'redux-form';
 import { Form, FormGroup, Button } from 'reactstrap';
-import { requiredFieldError, requiredFieldSuccess, urlFieldError } from 'core/validation';
+import { requiredFieldError, requiredFieldSuccess, githubUrlFieldError } from 'core/validation';
 import ReduxFormInput from 'components/ReduxFormInput';
+import { InjectedFormProps, reduxForm, Field } from 'redux-form';
 
 type Props = {
-    submit: any;
+    submitApi: any;
     taskId: number;
     studentId: string;
     courseId: string;
 };
 
-export default class FooterForm extends React.Component<Props, any> {
-    constructor(props: Props) {
+export type FormData = {
+    taskRepo: string;
+    studentComment: string;
+};
+
+class FooterForm extends React.Component<Props & InjectedFormProps<FormData, Props>, any> {
+    constructor(props: any) {
         super(props);
-        this.state = {
-            assignmentRepo: null,
-            studentComment: null,
-        };
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handleSubmit = (event: any) => {
-        const { submit, taskId, studentId, courseId } = this.props;
-        const { assignmentRepo, studentComment } = this.state;
-        event.preventDefault();
-        submit({
+    handleFormSubmit = (event: any) => {
+        const { submitApi, taskId, studentId, courseId } = this.props;
+        const { assignmentRepo, studentComment } = event;
+        submitApi({
             courseId,
             taskId,
             studentId,
@@ -38,9 +39,10 @@ export default class FooterForm extends React.Component<Props, any> {
     };
 
     render() {
+        const { handleSubmit } = this.props;
         return (
             <small className="text-muted">
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={handleSubmit(this.handleFormSubmit)}>
                     <FormGroup>
                         <Field
                             name="taskRepo"
@@ -49,10 +51,9 @@ export default class FooterForm extends React.Component<Props, any> {
                             component={ReduxFormInput}
                             required={true}
                             type="text"
-                            validate={[requiredFieldError, urlFieldError]}
+                            validate={[requiredFieldError, githubUrlFieldError]}
                             warn={requiredFieldSuccess}
                             className="form-control form-control-sm"
-                            onChange={this.handleChange}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -61,13 +62,12 @@ export default class FooterForm extends React.Component<Props, any> {
                             label="Comments"
                             placeholder="Write comments here"
                             component={ReduxFormInput}
-                            required={true}
+                            required={false}
                             type="textarea"
                             className="form-control form-control-sm"
-                            onChange={this.handleChange}
                         />
                     </FormGroup>
-                    <Button type="submit" className="btn btn-primary btn-sm">
+                    <Button type="submit" color="primary" size="sm">
                         Submit
                     </Button>
                 </Form>
@@ -75,3 +75,8 @@ export default class FooterForm extends React.Component<Props, any> {
         );
     }
 }
+
+export default reduxForm<FormData, Props>({
+    form: 'footerForm',
+    enableReinitialize: true,
+})(FooterForm);

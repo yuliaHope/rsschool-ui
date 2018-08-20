@@ -11,3 +11,7 @@ export const requiredFieldSuccess = (value?: string) => {
 export const urlFieldError = (value?: string) => {
     return !value || (value && isUrl(value)) ? undefined : 'Please enter valid URL.';
 };
+
+export const githubUrlFieldError = (value?: string) => {
+    return !value || (value && isUrl(value) && value.match(/github/i)) ? undefined : 'Please enter URL to Github repo.';
+};
