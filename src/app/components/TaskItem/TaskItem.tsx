@@ -19,13 +19,15 @@ export const TaskItem = ({ assignment, fetchAssignmentSolution }: Props) => {
                 <h5 className="card-title">{assignment.title}</h5>
                 <p className="card-text">{assignment.assignmentRepo}</p>
             </div>
-            <div className="card-footer">
-                <TaskForm
-                    status={assignment.status}
-                    assignment={assignment}
-                    fetchAssignmentSolution={fetchAssignmentSolution}
-                />
-            </div>
+            {assignment.status !== 'Checked' && (
+                <div className={`card-footer ${cn('footer-form')}`}>
+                    <TaskForm
+                        status={assignment.status}
+                        assignment={assignment}
+                        fetchAssignmentSolution={fetchAssignmentSolution}
+                    />
+                </div>
+            )}
         </div>
     );
 };

@@ -1,5 +1,16 @@
 @import '../../../styles/bootswatch/_variables';
+@import '../../../styles/variables';
 
 .three-in-row {
-    flex-basis: 25% !important;
+  flex-basis: 25% !important;
+}
+
+.header-alignment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-form {
+  background-color: #fff ;
+  border-top: none ;
 }

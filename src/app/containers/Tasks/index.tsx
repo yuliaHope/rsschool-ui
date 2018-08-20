@@ -6,6 +6,7 @@ import { fetchAssignments, fetchSolution } from 'core/actions';
 import { IAssignmentModel } from 'core/models';
 type Props = {
     courseId: string;
+    userGitId: string;
     assignments?: Array<IAssignmentModel>;
     loading: boolean;
     error: any;
@@ -17,6 +18,7 @@ type Props = {
 const mapStateToProps = (state: RootState, props: any): Props => {
     return {
         ...props,
+        userGitId: state.user.username,
         courseId: props.match.params.id,
         assignments: state.assignments.assignments,
         loading: state.assignments.loading,
@@ -52,15 +54,15 @@ class Tasks extends React.Component<Props> {
         return score;
     }
     render() {
-        const { assignments, error, fetchAssignmentSolution, courseId } = this.props;
+        const { assignments, error, fetchAssignmentSolution, courseId, userGitId } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
                 <div className="row">
                     <div className="col-6">
                         <p>
-                            Your github private repository{' '}
-                            <a className="badge badge-dark" href="#">
+                            Your github private repository
+                            <a className="badge badge-dark" href={`https://github.com/${userGitId}`}>
                                 Link TO Git
                             </a>
                         </p>
