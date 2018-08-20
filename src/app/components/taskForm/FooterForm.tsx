@@ -1,26 +1,31 @@
 import * as React from 'react';
+import { Form, FormGroup, Button } from 'reactstrap';
+import { requiredFieldError, requiredFieldSuccess, githubUrlFieldError } from 'core/validation';
+import ReduxFormInput from 'components/ReduxFormInput';
+import { InjectedFormProps, reduxForm, Field } from 'redux-form';
 
 type Props = {
-    submit: any;
+    submitApi: any;
     taskId: number;
     studentId: string;
     courseId: string;
 };
 
-export default class FooterForm extends React.Component<Props, any> {
-    constructor(props: Props) {
+export type FormData = {
+    taskRepo: string;
+    studentComment: string;
+};
+
+class FooterForm extends React.Component<Props & InjectedFormProps<FormData, Props>, any> {
+    constructor(props: any) {
         super(props);
-        this.state = {
-            assignmentRepo: null,
-            studentComment: null,
-        };
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handleSubmit = (event: any) => {
-        const { submit, taskId, studentId, courseId } = this.props;
-        const { assignmentRepo, studentComment } = this.state;
-        event.preventDefault();
-        submit({
+    handleFormSubmit = (event: any) => {
+        const { submitApi, taskId, studentId, courseId } = this.props;
+        const { assignmentRepo, studentComment } = event;
+        submitApi({
             courseId,
             taskId,
             studentId,
@@ -34,36 +39,44 @@ export default class FooterForm extends React.Component<Props, any> {
     };
 
     render() {
+        const { handleSubmit } = this.props;
         return (
             <small className="text-muted">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Choose repo</label>
-                        <input // TODO: change to ReduxInput
-                            type="text"
-                            className="form-control form-control-sm"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
+                <Form onSubmit={handleSubmit(this.handleFormSubmit)}>
+                    <FormGroup>
+                        <Field
+                            name="taskRepo"
+                            label="Choose repo"
                             placeholder="Enter link"
-                            name="assignmentRepo"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Comments</label>
-                        <textarea
+                            component={ReduxFormInput}
+                            required={true}
+                            type="text"
+                            validate={[requiredFieldError, githubUrlFieldError]}
+                            warn={requiredFieldSuccess}
                             className="form-control form-control-sm"
-                            id="exampleInputEmail9"
-                            placeholder="Write comments here"
-                            name="studentComment"
-                            onChange={this.handleChange}
                         />
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-sm">
+                    </FormGroup>
+                    <FormGroup>
+                        <Field
+                            name="studentComment"
+                            label="Comments"
+                            placeholder="Write comments here"
+                            component={ReduxFormInput}
+                            required={false}
+                            type="textarea"
+                            className="form-control form-control-sm"
+                        />
+                    </FormGroup>
+                    <Button type="submit" color="primary" size="sm">
                         Submit
-                    </button>
-                </form>
+                    </Button>
+                </Form>
             </small>
         );
     }
 }
+
+export default reduxForm<FormData, Props>({
+    form: 'footerForm',
+    enableReinitialize: true,
+})(FooterForm);
