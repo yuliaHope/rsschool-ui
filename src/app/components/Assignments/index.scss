@@ -1,6 +1,6 @@
 @media (min-width: 576px) {
     .card {
-        min-width: 40%;
+        min-width: 44%;
     }
 }
 @media (min-width: 1000px) {
@@ -21,4 +21,10 @@
 .studentComment{
     resize: none;
     height: 85px;
+}
+
+.card-deck::after{
+    content: "";
+    width: 30%;
+    margin: 0 15px;
 }

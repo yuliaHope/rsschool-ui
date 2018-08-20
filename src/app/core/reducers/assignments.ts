@@ -4,6 +4,7 @@ import { IAssignmentDocument } from '../models';
 
 export type INormalizeAssignment = {
     isEndAssignment: boolean;
+    isActiveAssignment: boolean;
     assignment: IAssignmentDocument;
 };
 
