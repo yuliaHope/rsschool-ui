@@ -1,4 +1,8 @@
 import * as React from 'react';
+import { Field } from 'redux-form';
+import { Form, FormGroup, Button } from 'reactstrap';
+import { requiredFieldError, requiredFieldSuccess, urlFieldError } from 'core/validation';
+import ReduxFormInput from 'components/ReduxFormInput';
 
 type Props = {
     submit: any;
@@ -36,33 +40,37 @@ export default class FooterForm extends React.Component<Props, any> {
     render() {
         return (
             <small className="text-muted">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Choose repo</label>
-                        <input // TODO: change to ReduxInput
-                            type="text"
-                            className="form-control form-control-sm"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Field
+                            name="taskRepo"
+                            label="Choose repo"
                             placeholder="Enter link"
-                            name="assignmentRepo"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Comments</label>
-                        <textarea
+                            component={ReduxFormInput}
+                            required={true}
+                            type="text"
+                            validate={[requiredFieldError, urlFieldError]}
+                            warn={requiredFieldSuccess}
                             className="form-control form-control-sm"
-                            id="exampleInputEmail9"
-                            placeholder="Write comments here"
-                            name="studentComment"
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <button type="submit" className="btn btn-primary btn-sm">
+                    </FormGroup>
+                    <FormGroup>
+                        <Field
+                            name="studentComment"
+                            label="Comments"
+                            placeholder="Write comments here"
+                            component={ReduxFormInput}
+                            required={true}
+                            type="textarea"
+                            className="form-control form-control-sm"
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <Button type="submit" className="btn btn-primary btn-sm">
                         Submit
-                    </button>
-                </form>
+                    </Button>
+                </Form>
             </small>
         );
     }
