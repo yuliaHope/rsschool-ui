@@ -59,7 +59,7 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
         const { courseId, assignments, isLoading, isAdmin } = this.props;
         return (
             <React.Fragment>
-                {isAdmin && (
+                {!isAdmin && (
                     <div className="tasks">
                         <h2>TASKS</h2>
                         <Row>
