@@ -10,6 +10,9 @@ import { CardDeck } from 'reactstrap';
 const cn = classNames(require('./index.scss'));
 
 const mapStateToProps = (state: RootState, props: any): AssigmentContainerProps => {
+    if (state.assignments == null) {
+        return props;
+    }
     return {
         ...props,
         isLoading: state.assignments.isLoading,

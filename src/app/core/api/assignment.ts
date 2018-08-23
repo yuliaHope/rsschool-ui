@@ -7,11 +7,12 @@ type AssignmentResponse = {
 
 type AssignmentsPostResponse = IAssignmentDocument;
 
-export function getAssignmentsById(courseId: string, studentId: string) {
-    return axios.get<AssignmentResponse>(`/api/course/${courseId}/assignment/${studentId}`);
+export async function getAssignmentsById(courseId: string, studentId: string) {
+    const response = await axios.get<AssignmentResponse>(`/api/course/${courseId}/assignment/${studentId}`);
+    return response.data.data;
 }
 
-export async function submitSolutionApi(assignment: IAssignment) {
+export function submitSolutionApi(assignment: IAssignment) {
     const { courseId, taskId, studentId } = assignment;
     return axios
         .patch<AssignmentsPostResponse>(`/api/course/${courseId}/assignment/${studentId}/${taskId}`, assignment)

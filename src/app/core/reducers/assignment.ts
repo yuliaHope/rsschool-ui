@@ -19,7 +19,7 @@ export function assignmentReducer(state = initialState, action: Action<any>): As
         case ASSIGNMENT.FETCH_ASSIGNMENTS_OK: {
             return {
                 ...state,
-                assignments: action.payload.data.data,
+                assignments: action.payload,
                 isLoading: false,
             };
         }
