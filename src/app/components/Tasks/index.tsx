@@ -48,58 +48,56 @@ class Tasks extends React.PureComponent<Props> {
 
                 {this.hasData() ? (
                     this.props.data.map((assignment, i) => {
-                        const template = tasksTemplates[assignment.taskId][assignment.status];
+                        const template = tasksTemplates[assignment.taskId];
                         return (
                             <div key={i}>
                                 <div>
                                     {template ? (
                                         template(assignment)
                                     ) : (
-                                        <div>
-                                            <Card className={cn('card-empty')}>
-                                                <CardHeader>Not submitted yet!</CardHeader>
-                                                <CardBody>
-                                                    <CardTitle className={cn('card-empty-title')}>
-                                                        {this.props.data[i].taskId}
-                                                    </CardTitle>
-                                                    <CardText>{this.props.data[i].assignmentRepo}</CardText>
-                                                </CardBody>
-                                                <CardFooter>
-                                                    <small className={cn('text-muted')}>
-                                                        <Form>
-                                                            <FormGroup>
-                                                                <Label for="taskUrl">Choose repo</Label>
-                                                                <Input
-                                                                    type="url"
-                                                                    name="url"
-                                                                    id="taskUrl"
-                                                                    placeholder="Enter link"
-                                                                    bsSize="sm"
-                                                                    required={true}
-                                                                />
-                                                            </FormGroup>
-                                                            <FormGroup>
-                                                                <Label for="taskText">Comments</Label>
-                                                                <Input
-                                                                    type="textarea"
-                                                                    name="text"
-                                                                    id="taskText"
-                                                                    rows="5"
-                                                                    placeholder="Write comments here"
-                                                                    bsSize="sm"
-                                                                />
-                                                            </FormGroup>
-                                                            <Button
-                                                                onClick={this.props.assign}
-                                                                className={cn('submit-btn')}
-                                                            >
-                                                                Submit
-                                                            </Button>
-                                                        </Form>
-                                                    </small>
-                                                </CardFooter>
-                                            </Card>
-                                        </div>
+                                        <Card className={cn('card-empty')}>
+                                            <CardHeader>Not submitted yet!</CardHeader>
+                                            <CardBody>
+                                                <CardTitle className={cn('card-empty-title')}>
+                                                    {this.props.data[i].taskId}
+                                                </CardTitle>
+                                                <CardText>{this.props.data[i].assignmentRepo}</CardText>
+                                            </CardBody>
+                                            <CardFooter>
+                                                <small className={cn('text-muted')}>
+                                                    <Form>
+                                                        <FormGroup>
+                                                            <Label for="taskUrl">Choose repo</Label>
+                                                            <Input
+                                                                bsSize="sm"
+                                                                id="taskUrl"
+                                                                name="url"
+                                                                placeholder="Enter link"
+                                                                required={true}
+                                                                type="url"
+                                                            />
+                                                        </FormGroup>
+                                                        <FormGroup>
+                                                            <Label for="taskText">Comments</Label>
+                                                            <Input
+                                                                bsSize="sm"
+                                                                id="taskText"
+                                                                name="text"
+                                                                placeholder="Write comments here"
+                                                                rows="5"
+                                                                type="textarea"
+                                                            />
+                                                        </FormGroup>
+                                                        <Button
+                                                            onClick={this.props.assign}
+                                                            className={cn('submit-btn')}
+                                                        >
+                                                            Submit
+                                                        </Button>
+                                                    </Form>
+                                                </small>
+                                            </CardFooter>
+                                        </Card>
                                     )}
                                 </div>
                             </div>
