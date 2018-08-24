@@ -11,10 +11,10 @@ export interface IAssignment {
     // taskId: Array<IEventDocument>;
     taskId: string;
     courseId: string;
-    studenId: string;
+    studentId: string;
     status: IAssignmentStatus;
     mentorId: Array<IEventDocument>;
-    studenComment?: string;
+    studentComment?: string;
     mentorComment?: string;
     score: number;
     assignmentRepo: string;
