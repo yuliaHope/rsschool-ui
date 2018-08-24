@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Card, CardHeader } from 'reactstrap';
-import AssignmentItemBody from './AssignmentItemBody';
-import AssignmentItemForm, { AssignmentFormData } from './AssignmentItemForm';
+import AssignmentItemBody from '../AssignmentItemBody/AssignmentItemBody';
+import AssignmentItemForm, { AssignmentFormData } from '../AssignmentItemForm/AssignmentItemForm';
 import { INormalizeAssignment } from 'core/reducers/assignments';
 import { classNames } from 'core/styles';
 
-const cn = classNames(require('./index.scss'));
+const cn = classNames(require('../index.scss'));
 
 type AssignmentItemProps = {
     assignment: INormalizeAssignment;

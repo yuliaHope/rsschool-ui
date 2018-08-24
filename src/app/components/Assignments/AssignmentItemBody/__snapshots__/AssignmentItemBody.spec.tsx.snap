@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assignment Item Body render with data 1`] = `
+<CardBody
+  tag="div"
+>
+  <h5
+    className="card-title"
+  >
+    title
+  </h5>
+  <p
+    className="card-text"
+  >
+    urlToDescription
+  </p>
+</CardBody>
+`;
+
+exports[`Assignment Item Body render with no data 1`] = `
+<CardBody
+  tag="div"
+>
+  <h5
+    className="card-title"
+  />
+  <p
+    className="card-text"
+  />
+</CardBody>
+`;

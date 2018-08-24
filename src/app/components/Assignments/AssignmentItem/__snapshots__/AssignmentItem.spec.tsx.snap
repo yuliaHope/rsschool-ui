@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assignments Item render card Assigned status 1`] = `
+<Card
+  className="bm-3 mb-4 flex-grow-0 flex-shrink-1 card  bg-secondary"
+  tag="div"
+>
+  <CardHeader
+    className=""
+    tag="div"
+  >
+    Not submitted yet!
+  </CardHeader>
+  <AssignmentItemBody
+    title="title"
+    urlToDescription="urlToDescription"
+  />
+  <ReduxForm
+    form="form-123"
+    onSubmit={[Function]}
+  />
+</Card>
+`;
+
+exports[`Assignments Item render card Checked status && score !== 100 1`] = `
+<Card
+  className="bm-3 mb-4 flex-grow-0 flex-shrink-1 card  border-warning"
+  tag="div"
+>
+  <CardHeader
+    className="text-white bg-warning"
+    tag="div"
+  >
+    Done!
+    <span
+      className="score"
+    >
+      30
+      %
+    </span>
+  </CardHeader>
+  <AssignmentItemBody
+    title="title"
+    urlToDescription="urlToDescription"
+  />
+</Card>
+`;
+
+exports[`Assignments Item render card Checked status && score === 100 1`] = `
+<Card
+  className="bm-3 mb-4 flex-grow-0 flex-shrink-1 card  border-success"
+  tag="div"
+>
+  <CardHeader
+    className="text-white bg-success"
+    tag="div"
+  >
+    Done!
+    <span
+      className="score"
+    >
+      100
+      %
+    </span>
+  </CardHeader>
+  <AssignmentItemBody
+    title="title"
+    urlToDescription="urlToDescription"
+  />
+</Card>
+`;
+
+exports[`Assignments Item render card Missed deadline 1`] = `
+<Card
+  className="bm-3 mb-4 flex-grow-0 flex-shrink-1 card  border-danger"
+  tag="div"
+>
+  <CardHeader
+    className="text-white bg-danger"
+    tag="div"
+  >
+    The deadline has passed!
+  </CardHeader>
+  <AssignmentItemBody
+    title="title"
+    urlToDescription="urlToDescription"
+  />
+</Card>
+`;

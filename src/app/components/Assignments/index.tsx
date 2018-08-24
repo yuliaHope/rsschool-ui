@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AssignmentItem from './AssignmentItem';
+import AssignmentItem from './AssignmentItem/AssignmentItem';
 import { INormalizeAssignment } from 'core/reducers/assignments';
 import { classNames } from 'core/styles';
 

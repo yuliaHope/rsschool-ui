@@ -5,7 +5,7 @@ import { requiredFieldError, requiredFieldSuccess, urlFieldError } from 'core/va
 import ReduxFormInput from 'components/ReduxFormInput';
 import { classNames } from 'core/styles';
 
-const cn = classNames(require('./index.scss'));
+const cn = classNames(require('../index.scss'));
 
 type AssignmentItemFormProps = {};
 
@@ -48,7 +48,7 @@ class AssignmentItemForm extends React.PureComponent<
                                 className={`${cn('studentComment')} form-control-sm`}
                             />
                         </FormGroup>
-                        <Button type="submit" color="primary" size="sm">
+                        <Button type="submit" color="primary" size="sm" className="abc">
                             Submit
                         </Button>
                     </Form>

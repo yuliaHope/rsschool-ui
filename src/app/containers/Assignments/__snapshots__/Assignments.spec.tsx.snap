@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assignments container Assignments preloader renders properly 1`] = `
+<div
+  className="tasks"
+>
+  <h2>
+    TASKS
+  </h2>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        Your github private repository
+        <Badge
+          className="badge"
+          color="dark"
+          href="#"
+          pill={false}
+          tag="span"
+        >
+           
+          here
+        </Badge>
+      </p>
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score: 
+        0
+      </p>
+    </Col>
+  </Row>
+  <h3>
+    Loading...
+  </h3>
+</div>
+`;
+
+exports[`Assignments container Assignments render with data renders properly 1`] = `
+<div
+  className="tasks"
+>
+  <h2>
+    TASKS
+  </h2>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        Your github private repository
+        <Badge
+          className="badge"
+          color="dark"
+          href="#"
+          pill={false}
+          tag="span"
+        >
+           
+          here
+        </Badge>
+      </p>
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score: 
+        100
+      </p>
+    </Col>
+  </Row>
+  <Assignments
+    assignments={
+      Array [
+        Object {
+          "assignment": Object {
+            "score": 100,
+          },
+        },
+      ]
+    }
+    courseId="courseId"
+    updateAssignment={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Assignments container Initial render renders properly 1`] = `
+<div
+  className="tasks"
+>
+  <h2>
+    TASKS
+  </h2>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        Your github private repository
+        <Badge
+          className="badge"
+          color="dark"
+          href="#"
+          pill={false}
+          tag="span"
+        >
+           
+          here
+        </Badge>
+      </p>
+    </Col>
+    <Col
+      className="text-right"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score: 
+        0
+      </p>
+    </Col>
+  </Row>
+  <Assignments
+    assignments={Array []}
+    courseId="courseId"
+    updateAssignment={[MockFunction]}
+  />
+</div>
+`;

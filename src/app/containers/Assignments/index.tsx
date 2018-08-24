@@ -6,10 +6,14 @@ import { fetchAssignments, updateAssignment } from 'core/actions';
 import { classNames } from 'core/styles';
 import './index.scss';
 import { INormalizeAssignment } from 'core/reducers/assignments';
+import { RootState } from 'core/reducers';
 
 const cn = classNames(require('./index.scss'));
 
-const mapStateToProps = (state: any, props: any): AssignmentsContainerProps => {
+const mapStateToProps = (state: RootState, props: any): AssignmentsContainerProps => {
+    if (state.assignments == null || state.user == null) {
+        return props;
+    }
     return {
         ...props,
         courseId: props.match.params.id,
@@ -58,37 +62,35 @@ class AssignmentsContainer extends React.Component<AssignmentsContainerProps> {
     render() {
         const { courseId, assignments, isLoading, isAdmin } = this.props;
         return (
-            <React.Fragment>
-                {!isAdmin && (
-                    <div className="tasks">
-                        <h2>TASKS</h2>
-                        <Row>
-                            <Col xs="6">
-                                <p>
-                                    Your github private repository
-                                    <Badge color="dark" href="#" className={cn('badge')}>
-                                        {' '}
-                                        here
-                                    </Badge>
-                                </p>
-                            </Col>
-                            <Col xs="6" className="text-right">
-                                <p>You are in the TOP 50 students!</p>
-                                <p>Full Score: {this.getFullScore()}</p>
-                            </Col>
-                        </Row>
-                        {isLoading ? (
-                            <h3>Loading...</h3>
-                        ) : (
-                            <Assignments
-                                courseId={courseId}
-                                assignments={assignments}
-                                updateAssignment={this.props.updateAssignment}
-                            />
-                        )}
-                    </div>
-                )}
-            </React.Fragment>
+            !isAdmin && (
+                <div className="tasks">
+                    <h2>TASKS</h2>
+                    <Row>
+                        <Col xs="6">
+                            <p>
+                                Your github private repository
+                                <Badge color="dark" href="#" className={cn('badge')}>
+                                    {' '}
+                                    here
+                                </Badge>
+                            </p>
+                        </Col>
+                        <Col xs="6" className="text-right">
+                            <p>You are in the TOP 50 students!</p>
+                            <p>Full Score: {this.getFullScore()}</p>
+                        </Col>
+                    </Row>
+                    {isLoading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <Assignments
+                            courseId={courseId}
+                            assignments={assignments}
+                            updateAssignment={this.props.updateAssignment}
+                        />
+                    )}
+                </div>
+            )
         );
     }
 }
