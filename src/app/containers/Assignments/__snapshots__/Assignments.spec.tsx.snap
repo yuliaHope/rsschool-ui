@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assignments renders correctly 1`] = `
+<Assignments
+  assignments={Array []}
+  fetchAllAssignments={[Function]}
+  updateAllAssignments={[Function]}
+/>
+`;
