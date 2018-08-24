@@ -47,13 +47,13 @@ class Tasks extends React.PureComponent<Props> {
                 </div>
 
                 {this.hasData() ? (
-                    this.props.data.map((feedRecord, i) => {
-                        const template = tasksTemplates[feedRecord.taskId][feedRecord.status];
+                    this.props.data.map((assignment, i) => {
+                        const template = tasksTemplates[assignment.taskId][assignment.status];
                         return (
                             <div key={i}>
                                 <div>
                                     {template ? (
-                                        template(feedRecord)
+                                        template(assignment)
                                     ) : (
                                         <div>
                                             <Card className={cn('card-empty')}>
