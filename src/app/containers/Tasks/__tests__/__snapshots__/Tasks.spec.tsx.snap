@@ -2,34 +2,8 @@
 
 exports[`Tasks renders correctly if no data 1`] = `
 <Tasks
-  assignments={Array []}
   courseId=""
   isLoading={false}
-  onLoad={[MockFunction]}
   studentId=""
-  submitTask={[MockFunction]}
-/>
-`;
-
-exports[`Tasks renders correctly with data  1`] = `
-<Tasks
-  assignments={
-    Array [
-      Object {
-        "courseId": "rs-course-2018q3",
-        "score": null,
-        "status": "Assigned",
-        "studentId": "nikkaktus24",
-        "taskId": "testTaskId",
-        "title": "Test task",
-        "urlToDescription": "Test description",
-      },
-    ]
-  }
-  courseId="rs-course-2018q3"
-  isLoading={false}
-  onLoad={[MockFunction]}
-  studentId="nikkaktus24"
-  submitTask={[MockFunction]}
 />
 `;

@@ -62,7 +62,7 @@ class Tasks extends React.Component<AssigmentContainerProps> {
     generateTasks() {
         const { assignments } = this.props.assignments;
         const { submitTask } = this.props;
-        if (assignments.length > 0) {
+        if (assignments && assignments.length > 0) {
             return assignments.map((item: any, i: number) => {
                 const props = {
                     title: item.title,
