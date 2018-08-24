@@ -7,7 +7,7 @@ export enum FeedActions {
     'Assignment' = 'Assignment',
 }
 
-export const assignmentTemplates: any = {
+export const tasksTemplates: any = {
     [FeedActions.Assignment]: {
         [IAssignmentStatus.Checked]: (feedRecord: IAssignment): any => {
             return (

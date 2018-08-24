@@ -1,14 +1,14 @@
 import { ASSIGNMENT } from 'core/constants';
 // import { getAssignments, updateAssignments } from 'core/api';
 // import { updateAssignments } from 'core/api';
-
 // import { IAssignment } from 'core/models';
 
-export function fetchAssignments() {
+export function fetchAllAssignments() {
     return async (dispatch: any) => {
         dispatch({
             type: ASSIGNMENT.FETCH_ALL_ASSIGNMENTS,
         });
+
         try {
             // const data: IAssignment[] = await getAssignments();
             const result = [
@@ -27,7 +27,6 @@ export function fetchAssignments() {
                     checkDate: 123,
                 },
             ];
-
             dispatch({
                 type: ASSIGNMENT.FETCH_ALL_ASSIGNMENTS_OK,
                 payload: result,
@@ -40,14 +39,14 @@ export function fetchAssignments() {
     };
 }
 
-export function updateUserAssignments() {
+export function updateAllAssignments() {
     return async (dispatch: any) => {
         dispatch({
             type: ASSIGNMENT.UPDATE_ALL_ASSIGNMENTS,
         });
 
         try {
-            // const result = await updateAssignments('', data);
+            // const result = await updateAssignments();
             const result = [
                 {
                     taskId: 'Assignment',
@@ -64,7 +63,6 @@ export function updateUserAssignments() {
                     checkDate: 123,
                 },
             ];
-
             dispatch({
                 type: ASSIGNMENT.UPDATE_ALL_ASSIGNMENTS_OK,
                 payload: result,

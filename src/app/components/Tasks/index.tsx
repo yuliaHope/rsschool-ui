@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IAssignment } from 'core/models';
-import { assignmentTemplates } from './assignmentsTemplates';
+import { tasksTemplates } from './tasksTemplates';
 import { classNames } from 'core/styles';
 const cn = classNames(require('./index.scss'));
 import {
@@ -18,13 +18,13 @@ import {
 } from 'reactstrap';
 
 type Props = {
-    fakeAssign: () => void;
-    fakeData: IAssignment[];
+    assign: () => void;
+    data: IAssignment[];
 };
 
 class Tasks extends React.PureComponent<Props> {
     hasData() {
-        return Array.isArray(this.props.fakeData) && this.props.fakeData.length > 0;
+        return Array.isArray(this.props.data) && this.props.data.length > 0;
     }
 
     render() {
@@ -47,8 +47,8 @@ class Tasks extends React.PureComponent<Props> {
                 </div>
 
                 {this.hasData() ? (
-                    this.props.fakeData.map((feedRecord, i) => {
-                        const template = assignmentTemplates[feedRecord.taskId][feedRecord.status];
+                    this.props.data.map((feedRecord, i) => {
+                        const template = tasksTemplates[feedRecord.taskId][feedRecord.status];
                         return (
                             <div key={i}>
                                 <div>
@@ -60,9 +60,9 @@ class Tasks extends React.PureComponent<Props> {
                                                 <CardHeader>Not submitted yet!</CardHeader>
                                                 <CardBody>
                                                     <CardTitle className={cn('card-empty-title')}>
-                                                        {this.props.fakeData[i].taskId}
+                                                        {this.props.data[i].taskId}
                                                     </CardTitle>
-                                                    <CardText>{this.props.fakeData[i].assignmentRepo}</CardText>
+                                                    <CardText>{this.props.data[i].assignmentRepo}</CardText>
                                                 </CardBody>
                                                 <CardFooter>
                                                     <small className={cn('text-muted')}>
@@ -90,7 +90,7 @@ class Tasks extends React.PureComponent<Props> {
                                                                 />
                                                             </FormGroup>
                                                             <Button
-                                                                onClick={() => this.props.fakeAssign()}
+                                                                onClick={this.props.assign}
                                                                 className={cn('submit-btn')}
                                                             >
                                                                 Submit

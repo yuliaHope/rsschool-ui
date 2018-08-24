@@ -15,7 +15,7 @@ export interface RootState {
     form: FormState;
     user: UserState;
     router: RouterState;
-    assignment: AssignmentState;
+    assignments: AssignmentState;
 }
 
 const rootReducer = combineReducers<RootState, Action<any>>({
@@ -25,7 +25,7 @@ const rootReducer = combineReducers<RootState, Action<any>>({
     form: formReducer as any,
     user: userReducer,
     router: routerReducer as any,
-    assignment: assignmentReducer,
+    assignments: assignmentReducer,
 });
 
 export default rootReducer;
