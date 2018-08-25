@@ -127,6 +127,7 @@ exports[`Tasks renders correctly  1`] = `
               <Button
                 className="submit-btn"
                 color="secondary"
+                onClick={[Function]}
                 tag="button"
               >
                 Submit

@@ -1,19 +1,16 @@
-import { IEventDocument } from './events';
-
 export enum IAssignmentStatus {
-    Assigned = 'Assignet',
+    Assigned = 'Assigned',
     ReadyForReview = 'ReadyForReview',
     Rejected = 'Rejected',
     Checked = 'Checked',
 }
 
 export interface IAssignment {
-    // taskId: Array<IEventDocument>;
     taskId: string;
     courseId: string;
     studentId: string;
     status: IAssignmentStatus;
-    mentorId: Array<IEventDocument>;
+    mentorId: string;
     studentComment?: string;
     mentorComment?: string;
     score: number;

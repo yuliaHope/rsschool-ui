@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import Tasks from './index';
+import { IAssignmentStatus } from 'core/models';
 
 describe('Tasks', () => {
     it('renders correctly ', () => {
@@ -11,7 +12,7 @@ describe('Tasks', () => {
                         taskId: 'Assignment',
                         courseId: '123',
                         studentId: '123',
-                        status: 'Assigned',
+                        status: IAssignmentStatus.Assigned,
                         mentorId: '123',
                         studentComment: '123',
                         mentorComment: '123',
@@ -22,13 +23,14 @@ describe('Tasks', () => {
                         checkDate: 123,
                     },
                 ]}
+                assign={() => {}}
             />,
         );
         expect(output).toMatchSnapshot();
     });
 
     it('renders correctly if no data', () => {
-        const output = shallow(<Tasks data={[]} />);
+        const output = shallow(<Tasks data={[]} assign={() => {}} />);
         expect(output).toMatchSnapshot();
     });
 });
