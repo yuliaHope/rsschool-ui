@@ -67,11 +67,9 @@ export enum FeedEntities {
 export enum FeedActions {
     'ENROLL' = 'ENROLL',
     'SIGNUP' = 'SIGNUP',
-    'ASSIGN_TASK' = 'ASSIGN_TASK',
 }
 
 type CourseActions = FeedActions.ENROLL;
 type UserActions = FeedActions.SIGNUP;
-type AssignmentsActions = FeedActions.ASSIGN_TASK;
 
-type Actions = CourseActions | UserActions | AssignmentsActions;
+type Actions = CourseActions | UserActions;

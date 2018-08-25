@@ -1,10 +1,14 @@
-import { FeedActions, IAssignment, IAssignmentStatus } from 'core/models';
+import { IAssignment, IAssignmentStatus } from 'core/models';
 import * as React from 'react';
 import CardChecked from './CardChecked';
 import CardRejected from './CardRejected';
 
+export enum FeedActions {
+    'Assignment' = 'Assignment',
+}
+
 export const tasksTemplates: any = {
-    [FeedActions.ASSIGN_TASK]: {
+    [FeedActions.Assignment]: {
         [IAssignmentStatus.Checked]: (assignment: IAssignment): any => {
             return (
                 <CardChecked

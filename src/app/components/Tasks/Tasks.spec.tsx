@@ -23,7 +23,7 @@ describe('Tasks', () => {
                         checkDate: 123,
                     },
                 ]}
-                assign={() => {}}
+                assign={jest.fn()}
             />,
         );
         expect(output).toMatchSnapshot();

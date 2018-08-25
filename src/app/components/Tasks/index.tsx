@@ -48,7 +48,7 @@ class Tasks extends React.PureComponent<Props> {
 
                 {this.hasData() ? (
                     this.props.data.map((assignment, i) => {
-                        const template = tasksTemplates[assignment.taskId];
+                        const template = tasksTemplates[assignment.taskId][assignment.status];
                         return (
                             <div key={i}>
                                 <div>

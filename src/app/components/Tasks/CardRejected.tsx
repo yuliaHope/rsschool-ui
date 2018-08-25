@@ -12,7 +12,7 @@ type Props = {
 const CardRejected = (props: Props) => {
     const { title, description } = props;
     return (
-        <Card className={cn('card border-danger')}>
+        <Card className={`${cn('card')} ${cn('border-danger')}`}>
             <CardHeader className={cn('text-white bg-danger')}>The deadline has passed</CardHeader>
             <CardBody className={cn('card-body')}>
                 <CardTitle className={cn('card-title')}>{title}</CardTitle>
