@@ -16,6 +16,9 @@ type Props = {
 };
 
 const mapStateToProps = (state: RootState, props: any): Props => {
+    if (state.assignments == null || state.user == null) {
+        return props;
+    }
     return {
         ...props,
         userGitId: state.user.username,
@@ -54,7 +57,7 @@ class Tasks extends React.Component<Props> {
         return score;
     }
     render() {
-        const { assignments, error, fetchAssignmentSolution, courseId, userGitId } = this.props;
+        const { assignments, error, fetchAssignmentSolution, userGitId } = this.props;
         return (
             <React.Fragment>
                 <h2>Tasks</h2>
@@ -79,7 +82,6 @@ class Tasks extends React.Component<Props> {
                                 assignment={elem}
                                 key={elem.taskId}
                                 fetchAssignmentSolution={fetchAssignmentSolution}
-                                courseId={courseId}
                             />
                         ))
                     ) : (

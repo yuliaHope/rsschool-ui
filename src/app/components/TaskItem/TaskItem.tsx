@@ -8,7 +8,6 @@ const cn = classNames(require('./index.scss'));
 
 type Props = {
     assignment: IAssignmentModel;
-    courseId: string;
     fetchAssignmentSolution: (assignment: IAssignmentModel) => void;
 };
 export const TaskItem = ({ assignment, fetchAssignmentSolution }: Props) => {

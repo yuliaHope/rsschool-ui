@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { classNames } from '../../core/styles';
+import { AssignmentStatus } from '../../core/models';
 const cn = classNames(require('./index.scss'));
 
 type Props = {
@@ -10,15 +11,15 @@ export const TaskHeader = ({ status, score }: Props) => {
     let headerTxt;
     let mark;
     let headerClassNames;
-    if (status === 'Assigned') {
+    if (status === AssignmentStatus.Assigned) {
         headerTxt = 'Not submitted yet!';
         mark = '';
         headerClassNames = 'bg-warning';
-    } else if (status === 'MissedDeadline') {
+    } else if (status === AssignmentStatus.MissedDeadline) {
         headerTxt = 'The deadline has passed!';
         mark = '';
         headerClassNames = 'bg-danger';
-    } else if (status === 'Checked') {
+    } else if (status === AssignmentStatus.Checked) {
         headerTxt = 'Done!';
         mark = score;
         headerClassNames = mark >= 100 ? 'bg-success' : 'bg-warning';
