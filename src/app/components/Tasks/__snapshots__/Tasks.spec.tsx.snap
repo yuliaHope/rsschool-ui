@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks renders correctly  1`] = `
+<div>
+  <h2>
+    Tasks
+  </h2>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <p>
+        Your github private repository
+         
+        <a
+          className="badge badge-dark"
+          href="#"
+        >
+          here
+        </a>
+      </p>
+    </div>
+    <div
+      className="col-6 text-right"
+    >
+      <p>
+        You are in the TOP X students!
+      </p>
+      <p>
+        Full Score: X
+      </p>
+    </div>
+  </div>
+  <div
+    key="0"
+  >
+    <div>
+      <Card
+        className="card-empty"
+        tag="div"
+      >
+        <CardHeader
+          tag="div"
+        >
+          Not submitted yet!
+        </CardHeader>
+        <CardBody
+          tag="div"
+        >
+          <CardTitle
+            className="card-empty-title"
+            tag="h5"
+          >
+            Assignment
+          </CardTitle>
+          <CardText
+            tag="p"
+          >
+            github.com/loveTriangle
+          </CardText>
+        </CardBody>
+        <CardFooter
+          tag="div"
+        >
+          <small
+            className="text-muted"
+          >
+            <Form
+              tag="form"
+            >
+              <FormGroup
+                tag="div"
+              >
+                <Label
+                  for="taskUrl"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Choose repo
+                </Label>
+                <Input
+                  bsSize="sm"
+                  id="taskUrl"
+                  name="url"
+                  placeholder="Enter link"
+                  required={true}
+                  type="url"
+                />
+              </FormGroup>
+              <FormGroup
+                tag="div"
+              >
+                <Label
+                  for="taskText"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  Comments
+                </Label>
+                <Input
+                  bsSize="sm"
+                  id="taskText"
+                  name="text"
+                  placeholder="Write comments here"
+                  rows="5"
+                  type="textarea"
+                />
+              </FormGroup>
+              <Button
+                className="submit-btn"
+                color="secondary"
+                onClick={[MockFunction]}
+                tag="button"
+              >
+                Submit
+              </Button>
+            </Form>
+          </small>
+        </CardFooter>
+      </Card>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tasks renders correctly if no data 1`] = `
+<div>
+  <h2>
+    Tasks
+  </h2>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <p>
+        Your github private repository
+         
+        <a
+          className="badge badge-dark"
+          href="#"
+        >
+          here
+        </a>
+      </p>
+    </div>
+    <div
+      className="col-6 text-right"
+    >
+      <p>
+        You are in the TOP X students!
+      </p>
+      <p>
+        Full Score: X
+      </p>
+    </div>
+  </div>
+  <div>
+    Nothing to show
+  </div>
+</div>
+`;

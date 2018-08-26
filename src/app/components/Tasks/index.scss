@@ -1,0 +1,25 @@
+.card,
+.card-empty {
+    width: 20vw;
+    margin: 50px auto;
+}
+
+.card-title,
+.card-empty-title {
+    text-transform: uppercase;
+}
+
+.card-body {
+    padding-bottom: 100px;
+}
+
+.score {
+    float: right;
+}
+
+.submit-btn {
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff;
+}
