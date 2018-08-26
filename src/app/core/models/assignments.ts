@@ -3,6 +3,7 @@ export enum AssignmentStatus {
     Checked = 'Checked',
     Rejected = 'Rejected',
     ReadyForReview = 'ReadyForReview',
+    MissedDeadline = 'MissedDeadline',
 }
 
 export interface IAssignment {

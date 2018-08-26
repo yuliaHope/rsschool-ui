@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task Item render Task Form in case status is Assigned 1`] = `
+<small
+  className="text-muted"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        Choose repo
+      </label>
+      <input
+        className="form-control form-control-sm"
+        pattern="https?://github.com/.+"
+        placeholder="Enter link"
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label>
+        Comments
+      </label>
+      <textarea
+        className="form-control form-control-sm"
+        placeholder="Write comments here"
+      />
+    </div>
+    <button
+      className="btn btn-primary btn-sm"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</small>
+`;
+
+exports[`Task Item render Task Form in case status is Checked 1`] = `<React.Fragment />`;
