@@ -11,7 +11,6 @@ type Props = {
     urlToDescription: string;
     status: string;
     taskId: number;
-    studentId: string;
     score: number;
     courseId: string;
     submit: any;
@@ -21,7 +20,7 @@ declare type StyleKey = keyof typeof AssignmentStyle;
 declare type TitleKey = keyof typeof AssignmentTitle;
 
 const TaskForm = (props: Props) => {
-    const { taskId, studentId, title, urlToDescription, submit, status, score, courseId } = props;
+    const { taskId, title, urlToDescription, submit, status, score, courseId } = props;
     const { Assigned, Checked } = AssignmentStatus;
 
     let formTitle;
@@ -46,9 +45,7 @@ const TaskForm = (props: Props) => {
             <div className={cn('card-header', `bg-${formStyle}`)}>{formTitle}</div>
             <HeaderForm title={title} urlToDescription={urlToDescription} />
             <div className={cn('card-footer')}>
-                {isSubmit ? null : (
-                    <FooterForm submitApi={submit} taskId={taskId} studentId={studentId} courseId={courseId} />
-                )}
+                {isSubmit ? null : <FooterForm submitApi={submit} taskId={taskId} courseId={courseId} />}
             </div>
         </div>
     );

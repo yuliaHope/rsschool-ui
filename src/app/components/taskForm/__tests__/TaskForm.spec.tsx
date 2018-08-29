@@ -6,7 +6,6 @@ describe('TaskForm', () => {
     it('renders correctly if no data', () => {
         const output = shallow(
             <TaskForm
-                studentId={''}
                 courseId={''}
                 title={''}
                 urlToDescription={''}

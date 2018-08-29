@@ -25,8 +25,8 @@ const mapStateToProps = (state: RootState, props: any): AssigmentContainerProps 
 const mapDispatchToProps = (dispatch: any, props: any): AssigmentContainerProps => {
     return {
         ...props,
-        onLoad: (courseId: string, studentId: string) => {
-            dispatch(fetchAssignments(courseId, studentId));
+        onLoad: (courseId: string) => {
+            dispatch(fetchAssignments(courseId));
         },
         submitTask: (assignment: IAssignment) => {
             dispatch(submitSolution(assignment));
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch: any, props: any): AssigmentContainerProps 
 };
 
 type AssigmentContainerProps = {
-    onLoad: (courseId: string, studentId: string) => void;
+    onLoad: (courseId: string) => void;
     submitTask: (assignment: IAssignment) => void;
     studentId: string;
     courseId: string;
@@ -55,8 +55,8 @@ class Tasks extends React.Component<AssigmentContainerProps> {
     }
 
     async componentDidMount() {
-        const { courseId, studentId } = this.props;
-        await this.props.onLoad(courseId, studentId);
+        const { courseId } = this.props;
+        await this.props.onLoad(courseId);
     }
 
     generateTasks() {

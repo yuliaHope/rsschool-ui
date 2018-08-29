@@ -17,7 +17,7 @@ describe('Actions test', () => {
     describe('fetchAssignments test', () => {
         it('Fetch assignments ok', () => {
             store
-                .dispatch(fetchAssignments('test', 'rss-course-2018q1'))
+                .dispatch(fetchAssignments('test'))
                 .then(() => expect(store.getActions()).toContainEqual({ type: ASSIGNMENT.LOADING }))
                 .then(() => expect(store.getActions()).toContainEqual({ type: ASSIGNMENT.FETCH_ASSIGNMENTS_OK }));
         });

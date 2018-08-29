@@ -15,7 +15,6 @@ exports[`FooterForm renders correctly if no data 1`] = `
   shouldError={[Function]}
   shouldValidate={[Function]}
   shouldWarn={[Function]}
-  studentId=""
   submitApi={[MockFunction]}
   taskId={0}
   touchOnBlur={true}

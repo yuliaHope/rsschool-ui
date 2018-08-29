@@ -7,7 +7,6 @@ import { InjectedFormProps, reduxForm, Field } from 'redux-form';
 type Props = {
     submitApi: any;
     taskId: number;
-    studentId: string;
     courseId: string;
 };
 
@@ -23,12 +22,11 @@ class FooterForm extends React.Component<Props & InjectedFormProps<FormData, Pro
     }
 
     handleFormSubmit = (event: any) => {
-        const { submitApi, taskId, studentId, courseId } = this.props;
+        const { submitApi, taskId, courseId } = this.props;
         const { assignmentRepo, studentComment } = event;
         submitApi({
             courseId,
             taskId,
-            studentId,
             assignmentRepo,
             studentComment,
         });
@@ -45,7 +43,7 @@ class FooterForm extends React.Component<Props & InjectedFormProps<FormData, Pro
                 <Form onSubmit={handleSubmit(this.handleFormSubmit)}>
                     <FormGroup>
                         <Field
-                            name="taskRepo"
+                            name="assignmentRepo"
                             label="Choose repo"
                             placeholder="Enter link"
                             component={ReduxFormInput}
