@@ -40,7 +40,7 @@ class ModalEvent extends React.PureComponent<ModalEventProps & InjectedFormProps
     getModalTitle = () => {
         const { eventType, event, isCopy } = this.props;
         switch (eventType) {
-            case EventType.Session: {
+            case EventType.Lecture: {
                 if (isCopy) {
                     return 'Copy Session';
                 }
@@ -98,7 +98,7 @@ class ModalEvent extends React.PureComponent<ModalEventProps & InjectedFormProps
                                 </Field>
                             </FormGroup>
                         ) : null}
-                        {eventType === EventType.Session ? (
+                        {eventType === EventType.Lecture ? (
                             <FormGroup>
                                 <Field
                                     label="Session Type"
@@ -176,7 +176,7 @@ class ModalEvent extends React.PureComponent<ModalEventProps & InjectedFormProps
                                 </FormGroup>
                             </React.Fragment>
                         ) : null}
-                        {eventType === EventType.Session ? (
+                        {eventType === EventType.Lecture ? (
                             <React.Fragment>
                                 <FormGroup>
                                     <Field

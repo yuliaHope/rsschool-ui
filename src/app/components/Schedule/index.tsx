@@ -31,7 +31,7 @@ type ScheduleProps = {
     deleteStage: (id: string) => void;
     addEvent: (event: IEvent) => void;
     updateEvent: (event: IEventDocument) => void;
-    deleteEvent: (id: string) => void;
+    deleteEvent: (id: string, route: string) => void;
 };
 
 type DeleteContext = {
@@ -174,7 +174,7 @@ class Schedule extends React.PureComponent<ScheduleProps, ScheduleState> {
         if (stage != null) {
             this.props.deleteStage(stage._id);
         } else if (event != null) {
-            this.props.deleteEvent(event._id);
+            this.props.deleteEvent(event._id, event.type);
         }
     };
 
@@ -226,7 +226,7 @@ class Schedule extends React.PureComponent<ScheduleProps, ScheduleState> {
                 {isAdmin ? (
                     <Row className="text-right mb-4 mt-3">
                         <FormGroup className="col-md-12">
-                            <Button color="success" onClick={this.toggleModalEvent(EventType.Session)}>
+                            <Button color="success" onClick={this.toggleModalEvent(EventType.Lecture)}>
                                 <FontAwesomeIcon icon={faPlus} /> Add Session
                             </Button>{' '}
                             <Button color="success" onClick={this.toggleModalEvent(EventType.Task)}>

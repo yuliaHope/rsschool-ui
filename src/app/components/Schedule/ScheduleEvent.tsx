@@ -25,7 +25,7 @@ import { EVENT_DATE_FORMAT, EVENT_DAY_FORMAT, EVENT_TIME_FORMAT } from 'core/con
 const cn = classNames(require('./index.scss'));
 
 const BADGE_COLOR_MAP = {
-    [EventType.Session]: 'info',
+    [EventType.Lecture]: 'info',
     [EventType.Task]: 'warning',
 };
 
