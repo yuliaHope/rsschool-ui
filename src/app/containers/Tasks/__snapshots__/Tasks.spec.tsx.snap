@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tasks container Tasks render with assignments render properly 1`] = `
+exports[`Tasks container render properly 1`] = `
 <React.Fragment>
   <h2>
     Tasks
@@ -62,7 +62,7 @@ exports[`Tasks container Tasks render with assignments render properly 1`] = `
 </React.Fragment>
 `;
 
-exports[`Tasks container render Tasks preloader render with preloader 1`] = `
+exports[`Tasks container render tasks container 1`] = `
 <React.Fragment>
   <h2>
     Tasks
@@ -101,7 +101,7 @@ exports[`Tasks container render Tasks preloader render with preloader 1`] = `
 </React.Fragment>
 `;
 
-exports[`Tasks container render without assignments render tasks container 1`] = `
+exports[`Tasks container render with preloader 1`] = `
 <React.Fragment>
   <h2>
     Tasks

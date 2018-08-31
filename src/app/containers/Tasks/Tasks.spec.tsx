@@ -18,28 +18,23 @@ describe('Tasks container', () => {
         fetchAssignmentsData: jest.fn(),
         fetchAssignmentSolution: jest.fn(),
     };
-    describe('render without assignments', () => {
-        it('render tasks container', () => {
-            const output = shallow(<Tasks {...props} />).dive();
-            expect(output).toMatchSnapshot();
-        });
+    it('render tasks container', () => {
+        const output = shallow(<Tasks {...props} />).dive();
+        expect(output).toMatchSnapshot();
     });
-    describe('calls fetchAssignmentsData', () => {
-        it('dispatches fetchAssignmentsData', () => {
-            expect(props.fetchAssignmentsData).toHaveBeenCalledTimes(1);
-        });
+
+    it('dispatches fetchAssignmentsData', () => {
+        expect(props.fetchAssignmentsData).toHaveBeenCalledTimes(1);
     });
-    describe('render Tasks preloader', () => {
+    it('render with preloader', () => {
         const nextProps = {
             ...props,
             loading: true,
         };
-        it('render with preloader', () => {
-            const output = shallow(<Tasks {...nextProps} />).dive();
-            expect(output).toMatchSnapshot();
-        });
+        const output = shallow(<Tasks {...nextProps} />).dive();
+        expect(output).toMatchSnapshot();
     });
-    describe('Tasks render with assignments', () => {
+    it('render properly', () => {
         const nextProps = {
             ...props,
             loading: false,
@@ -62,9 +57,7 @@ describe('Tasks container', () => {
                 },
             ],
         };
-        it('render properly', () => {
-            const output = shallow(<Tasks {...nextProps} />).dive();
-            expect(output).toMatchSnapshot();
-        });
+        const output = shallow(<Tasks {...nextProps} />).dive();
+        expect(output).toMatchSnapshot();
     });
 });
