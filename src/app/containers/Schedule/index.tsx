@@ -43,11 +43,11 @@ const mapDispatchToProps = (dispatch: any, props: any): ScheduleContainerProps =
         addEvent: (event: IEvent) => {
             dispatch(addEvent(event));
         },
-        updateEvent: (event: IEventDocument) => {
-            dispatch(updateEvent(event));
+        updateEvent: (event: IEventDocument, eventType: string) => {
+            dispatch(updateEvent(event, eventType));
         },
-        deleteEvent: (id: string) => {
-            dispatch(deleteEvent(id));
+        deleteEvent: (id: string, eventType: string) => {
+            dispatch(deleteEvent(id, eventType));
         },
     };
 };
@@ -59,8 +59,8 @@ type ScheduleContainerProps = {
     updateStage: (stage: IStageDocument) => void;
     deleteStage: (id: string) => void;
     addEvent: (event: IEvent) => void;
-    updateEvent: (event: IEventDocument) => void;
-    deleteEvent: (id: string) => void;
+    updateEvent: (event: IEventDocument, eventType: string) => void;
+    deleteEvent: (id: string, eventType: string) => void;
     courseId: string;
     isLoading: boolean;
     isAdmin: boolean;
