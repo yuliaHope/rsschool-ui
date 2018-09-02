@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks container render properly 1`] = `
+<React.Fragment>
+  <h2>
+    Tasks
+  </h2>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <p>
+        Your github private repository
+        <a
+          className="badge badge-dark"
+          href="https://github.com/userGitId"
+        >
+          Link TO Git
+        </a>
+      </p>
+    </div>
+    <div
+      className="col-6 text-right"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score:
+        90
+      </p>
+    </div>
+  </div>
+  <div
+    className="card-deck mb-3"
+  >
+    <Component
+      assignment={
+        Object {
+          "_id": "_id",
+          "assignmentRepo": "assignmentRepo",
+          "checkDate": 123,
+          "completeDate": 123,
+          "courseId": "courseId",
+          "deadlineDate": 123,
+          "mentorComment": "mentorComment",
+          "mentorId": "mentorId",
+          "score": 90,
+          "status": "Assigned",
+          "studentComment": "studentComment",
+          "studentId": "studentId",
+          "taskId": "taskId",
+          "title": "title",
+        }
+      }
+      fetchAssignmentSolution={[MockFunction]}
+      key="taskId"
+    />
+  </div>
+</React.Fragment>
+`;
+
+exports[`Tasks container render tasks container 1`] = `
+<React.Fragment>
+  <h2>
+    Tasks
+  </h2>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <p>
+        Your github private repository
+        <a
+          className="badge badge-dark"
+          href="https://github.com/userGitId"
+        >
+          Link TO Git
+        </a>
+      </p>
+    </div>
+    <div
+      className="col-6 text-right"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score:
+        0
+      </p>
+    </div>
+  </div>
+  <div
+    className="card-deck mb-3"
+  />
+</React.Fragment>
+`;
+
+exports[`Tasks container render with preloader 1`] = `
+<React.Fragment>
+  <h2>
+    Tasks
+  </h2>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <p>
+        Your github private repository
+        <a
+          className="badge badge-dark"
+          href="https://github.com/userGitId"
+        >
+          Link TO Git
+        </a>
+      </p>
+    </div>
+    <div
+      className="col-6 text-right"
+    >
+      <p>
+        You are in the TOP 50 students!
+      </p>
+      <p>
+        Full Score:
+        0
+      </p>
+    </div>
+  </div>
+  <div
+    className="card-deck mb-3"
+  />
+</React.Fragment>
+`;

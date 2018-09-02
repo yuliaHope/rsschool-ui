@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux';
-
 import { SCHEDULE } from './constants';
 import { IEventDocument, IStageDocument } from './models';
 

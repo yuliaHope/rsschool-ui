@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task Item render item Assigned status 1`] = `
+<div
+  className="three-in-row card bg-secondary mb-3"
+>
+  <Component
+    score={0}
+    status="Assigned"
+  />
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    >
+      title
+    </h5>
+    <p
+      className="card-text"
+    >
+      assignmentRepo
+    </p>
+  </div>
+  <div
+    className="card-footer footer-form"
+  >
+    <TaskForm
+      assignment={
+        Object {
+          "_id": "_id",
+          "assignmentRepo": "assignmentRepo",
+          "checkDate": 123,
+          "completeDate": 123,
+          "courseId": "courseId",
+          "deadlineDate": 123,
+          "mentorComment": "mentorComment",
+          "mentorId": "mentorId",
+          "score": 0,
+          "status": "Assigned",
+          "studentComment": "studentComment",
+          "studentId": "studentId",
+          "taskId": "taskId",
+          "title": "title",
+        }
+      }
+      fetchAssignmentSolution={[MockFunction]}
+      status="Assigned"
+    />
+  </div>
+</div>
+`;
+
+exports[`Task Item render item in case status is Checked 1`] = `
+<div
+  className="three-in-row card bg-secondary mb-3"
+>
+  <Component
+    score={0}
+    status="Checked"
+  />
+  <div
+    className="card-body"
+  >
+    <h5
+      className="card-title"
+    >
+      title
+    </h5>
+    <p
+      className="card-text"
+    >
+      assignmentRepo
+    </p>
+  </div>
+</div>
+`;

@@ -136,14 +136,14 @@ export function updateEvent(event: IEventDocument) {
     };
 }
 
-export function deleteEvent(id: string) {
+export function deleteEvent(id: string, eventType: string) {
     return async (dispatch: any) => {
         dispatch({
             type: SCHEDULE.LOADING,
         });
 
         try {
-            await deleteEventApi(id);
+            await deleteEventApi(id, eventType);
             dispatch({
                 type: SCHEDULE.DELETE_COURSE_EVENT_OK,
                 payload: id,

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task Item render Task Header in case status is Assigned 1`] = `
+<div
+  className="card-header bg-warning text-white header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    Not submitted yet!
+     
+  </span>
+</div>
+`;
+
+exports[`Task Item render Task Header in case status is Checked && score < 100 1`] = `
+<div
+  className="card-header bg-warning text-white header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    Done!
+     
+  </span>
+  <span
+    className="card-header-text"
+  >
+    99
+    %
+  </span>
+</div>
+`;
+
+exports[`Task Item render Task Header in case status is Checked && score >= 100 1`] = `
+<div
+  className="card-header bg-success text-white header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    Done!
+     
+  </span>
+  <span
+    className="card-header-text"
+  >
+    100
+    %
+  </span>
+</div>
+`;
+
+exports[`Task Item render Task Header in case status is MissedDeadline 1`] = `
+<div
+  className="card-header bg-danger text-white header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    The deadline has passed!
+     
+  </span>
+</div>
+`;
+
+exports[`Task Item render Task Header in case status is ReadyForReview 1`] = `
+<div
+  className="card-header   header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    ReadyForReview
+     
+  </span>
+</div>
+`;
+
+exports[`Task Item render Task Header in case status is Rejected 1`] = `
+<div
+  className="card-header   header-alignment"
+>
+  <span
+    className="card-header-text"
+  >
+     
+    Rejected
+     
+  </span>
+</div>
+`;
