@@ -30,8 +30,8 @@ type ScheduleProps = {
     updateStage: (stage: IStageDocument) => void;
     deleteStage: (id: string) => void;
     addEvent: (event: IEvent) => void;
-    updateEvent: (event: IEventDocument) => void;
-    deleteEvent: (id: string) => void;
+    updateEvent: (event: IEventDocument, eventType: string) => void;
+    deleteEvent: (id: string, eventType: string) => void;
 };
 
 type DeleteContext = {
@@ -161,7 +161,7 @@ class Schedule extends React.PureComponent<ScheduleProps, ScheduleState> {
             if (isCopyEvent) {
                 this.props.addEvent(data);
             } else {
-                this.props.updateEvent({ ...event, ...data });
+                this.props.updateEvent({ ...event, ...data }, eventType);
             }
         } else {
             this.props.addEvent(data);
@@ -174,7 +174,7 @@ class Schedule extends React.PureComponent<ScheduleProps, ScheduleState> {
         if (stage != null) {
             this.props.deleteStage(stage._id);
         } else if (event != null) {
-            this.props.deleteEvent(event._id);
+            this.props.deleteEvent(event._id, event.type);
         }
     };
 

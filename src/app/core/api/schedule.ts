@@ -53,10 +53,10 @@ export function addEventApi(event: IEvent) {
     return axios.post<EventPostResponse>(`/api/event`, event).then(response => response.data);
 }
 
-export function updateEventApi(event: IEventDocument) {
-    return axios.patch<EventPatchResponse>(`/api/event`, event).then(response => response.data.data);
+export function updateEventApi(event: IEventDocument, eventType: string) {
+    return axios.patch<EventPatchResponse>(`/api/event/${eventType}`, event).then(response => response.data.data);
 }
 
-export function deleteEventApi(id: string) {
-    return axios.delete(`/api/event/${id}`);
+export function deleteEventApi(id: string, eventType: string) {
+    return axios.delete(`/api/event/${id}/${eventType}`);
 }

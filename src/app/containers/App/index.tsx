@@ -7,6 +7,7 @@ import Schedule from '../Schedule';
 import Home from '../Home';
 import Layout from '../Layout';
 import Profile from '../Profile';
+import Assignments from '../Assignments';
 
 const App = (): JSX.Element => {
     return (
@@ -18,6 +19,7 @@ const App = (): JSX.Element => {
 
                 <Route exact={true} path="/course/:id/schedule" component={Schedule} />
                 <Route exact={true} path="/course/:id/info" component={CourseInfo} />
+                <Route exact={true} path="/course/:id/tasks" component={Assignments} />
 
                 <Route exact={true} path="/profile" component={Profile} />
                 <Route exact={true} path="/admin" component={Admin} />

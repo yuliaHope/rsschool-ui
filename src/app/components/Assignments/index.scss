@@ -1,0 +1,30 @@
+@media (min-width: 576px) {
+    .card {
+        min-width: 44%;
+    }
+}
+@media (min-width: 1000px) {
+    .card {
+        min-width: 30%;
+    }
+}
+.score{
+    float: right;
+    font-weight: bold;
+}
+
+.card-footer {
+    background: none;
+    border: none;
+}
+
+.studentComment{
+    resize: none;
+    height: 85px;
+}
+
+.card-deck::after{
+    content: "";
+    width: 30%;
+    margin: 0 15px;
+}

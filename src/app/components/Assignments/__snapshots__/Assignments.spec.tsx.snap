@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assignments render with data renders properly 1`] = `
+<div
+  className="card-deck card-deck mb-3 justify-content-between"
+>
+  <AssignmentItem
+    assignment={
+      Object {
+        "assignment": Object {
+          "_id": 123,
+          "assignmentRepo": "assignmentRepo",
+          "checkDate": 1.5555555555555557e+21,
+          "completeDate": 10000555555555556,
+          "courseId": "courseId",
+          "deadlineDate": 1.5555555555555555e+22,
+          "mentorComment": "mentorComment",
+          "mentorId": "mentorId",
+          "score": 100,
+          "status": "Assigned",
+          "studentComment": "studentComment",
+          "studentId": "studentId",
+          "taskId": "taskId",
+          "title": "title",
+          "urlToDescription": "urlToDescription",
+          "whoChecks": "whoChecks",
+        },
+        "isActiveAssignment": true,
+        "isEndAssignment": false,
+      }
+    }
+    key="123"
+    updateAssignment={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Assignments render with no data renders properly 1`] = `
+<div
+  className="card-deck card-deck mb-3 justify-content-between"
+/>
+`;
